@@ -11,23 +11,16 @@
     <h3>Testing Audio Feed</h3>
     <h6>Using the browser</h6>
     <p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Build_a_phone_with_peerjs/Connect_peers/Get_microphone_permission">MDN</a></p>
-    <button>Record</button>
 
-    <!--button for 'start recording'-->
-  <p>
-    <button id="btnStart">START RECORDING</button>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-    <button id="btnStop">STOP RECORDING</button>
-    <!--button for 'stop recording'-->
-  </p>
- 
-  <!--for record-->
-  <audio controls></audio>
-  <!--'controls' use for add
-    play, pause, and volume-->
- 
-  <!--for play the audio-->
-  <audio id="audioPlay" controls></audio>
+    <input type="file" accept="audio/*" capture id="recorder" />
+
+    <i class="fa-solid fa-microphone">
+      <input type="file" accept="audio/*" capture id="micRecorder" />
+    </i>
+    <a id="download">Download</a>
+    <button id="stop">Stop</button>
+    <audio id="player" controls></audio>
+
 
     <script src="js/index.js" type="text/javascript"></script>
 </body>
