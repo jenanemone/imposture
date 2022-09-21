@@ -1,0 +1,39 @@
+{
+  "name": "imposture",
+  "version": "1.0.0",
+  "description": "App to help you speak better.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jenanemone/imposture.git"
+  },
+  "author": "Jennifer Allen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenanemone/imposture/issues"
+  },
+  "homepage": "https://github.com/jenanemone/imposture#readme",
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "flash": "^1.1.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.20"
+  }
+}

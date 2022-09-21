@@ -1,0 +1,35 @@
+<h6>Dashboard</h6>
+<h3>Welcome, {{name}}</h3>
+<p>Here are your Reviews</p>
+{{#if reviews}}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each reviews}}
+                <tr>
+                    <td><a href="/summaries/{{_id}}">{{title}}</a></td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                    <td><span class="dash-status">{{status}}</span></td>
+                    <td>
+                        <a href="/reviews/edit/{{_id}}" class="btn-float btn"><i class="fas fa-edit"></i></a>
+
+                        <form action="/reviews/{{_id}}" method="POST" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>You have not created any summaries</p>
+
+{{/if}}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>save the Data from the mic</title>
+</head>
+<body>
+    <input type="file" accept="audio/*" capture id="recorder" />
+<!-- <audio id="player" controls></audio>
+  <script>
+    const recorder = document.getElementById('recorder');
+    const player = document.getElementById('player');
+
+    recorder.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const url = URL.createObjectURL(file);
+      // Do something with the audio file.
+      player.src = url;
+    });
+  </script>
+</audio> -->
+<audio id="player" controls></audio> 
+<!-- <script>
+  const player = document.getElementById('player');
+
+  const handleSuccess = function (stream) {
+    if (window.URL) {
+      player.srcObject = stream;
+    } else {
+      player.src = stream;
+    }
+  };
+
+  navigator.mediaDevices
+    .getUserMedia({audio: true, video: false})
+    .then(handleSuccess);
+</script> -->
+<script>
+    const handleSuccess = function(stream) {
+      const context = new AudioContext();
+      const source = context.createMediaStreamSource(stream);
+      const processor = context.createScriptProcessor(1024, 1, 1);
+  
+      source.connect(processor);
+      processor.connect(context.destination);
+  
+      processor.onaudioprocess = function(e) {
+        // Do something with the data, e.g. convert it to WAV
+        console.log(e.inputBuffer);
+      };
+    };
+  
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        .then(handleSuccess);
+  </script>
+  <a id="download">Download</a>
+  <button id="stop">Stop</button>
+  <script>
+    const downloadLink = document.getElementById('download');
+    const stopButton = document.getElementById('stop');
+  
+  
+    const handleMoreSuccess = function(stream) {
+      const options = {mimeType: 'audio/webm'};
+      const recordedChunks = [];
+      const mediaRecorder = new MediaRecorder(stream, options);
+  
+      mediaRecorder.addEventListener('dataavailable', function(e) {
+        if (e.data.size > 0) recordedChunks.push(e.data);
+      });
+  
+      mediaRecorder.addEventListener('stop', function() {
+        downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
+        downloadLink.download = 'acetest.wav';
+      });
+  
+      stopButton.addEventListener('click', function() {
+        mediaRecorder.stop();
+      });
+  
+      mediaRecorder.start();
+    };
+  
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        .then(handleMoreSuccess);
+  </script>
+</body>
+</html>
