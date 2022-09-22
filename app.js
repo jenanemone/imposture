@@ -1,7 +1,9 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const exphbs = require('express-handlebars')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
@@ -9,8 +11,8 @@ const logger = require('morgan');
 const connectDB = require('./config/database');
 
 const mainRoutes = require('./routes/main');
-const practiceRoutes = require("./routes/practice");
-const vaultRoutes = require('./routes/vault');
+const practiceRoutes = require("./routes/publicSpeech");
+const vaultRoutes = require('./routes/pastPractica');
 
 // env config
 require('dotenv').config( { path: './config/.env' } );
@@ -25,26 +27,37 @@ connectDB();
 const { formatDate, stripTags, editIcon, truncate, select } = require('./helpers/hbs');
 
 // set handlebars for viewing
-app.engine('.hbs', exphhbs.engine( { helpers: {
+app.engine('.hbs', exphbs.engine( { helpers: {
     formatDate,
     stripTags,
     truncate,
     editIcon,
     select
-}, defaultLayout: 'Main', extname: '.hbs' } ) );
+}, defaultLayout: 'main', extname: '.hbs' } ) );
 app.set('view engine', '.hbs');
 
 // For connection
-let store = MongoStore.create({
-    client: mongoose.connection.getClient()
-});
+// let store = MongoStore.create({
+//     client: mongoose.connection.getClient()
+// });
+
+
+// Static folder
+app.use( express.static( path.join( __dirname, "public" ) ) );
+
+//Body Parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//Logging
+app.use(logger("dev"));
 
 // Sessions
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'samba rhumba',
     resave: false,
     saveUninitialized: false,
-    store: store
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
 } ) );
 
 
@@ -58,14 +71,19 @@ app.use(function (req, res, next) {
     next()
 })
 
-// Static folder
-app.use( express.static( path.join( __dirname, "public" ) ) );
+
+//Use forms for put / delete
+app.use(methodOverride("_method"));
 
 // Routes
-app.use('/', require('./routes/index') );
-app.use('/auth', require('./routes/auth') );
-app.use('/stories', require('./routes/practice') );
-app.use('/vault', require ('./routes/vault') );
+
+app.use("/", mainRoutes);
+
+// app.use('/', require('./routes/index') );
+// app.use('/auth', require('./routes/auth') );
+//app.use('/publicSpeech', require('./routes/publicSpeech') );
+//app.use('/pastPractica', require ('./routes/pastPractica') );
+//app.use('/analysis', require('./routes/analysis') );
 
 const PORT = process.env.PORT || 5000;
 

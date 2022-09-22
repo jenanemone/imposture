@@ -1,3 +1,10 @@
+// Create Practicum
+
+// Insert into Mongo
+
+// Reroute to analysis
+
+
 const practice = require('../models/Practicum');
 const script = require('../models/Script');
 const vault = require('../models/Vault');
