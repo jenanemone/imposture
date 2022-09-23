@@ -57,7 +57,7 @@ app.use(session({
     secret: 'samba rhumba',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+   // store: new MongoStore({ mongooseConnection: mongoose.connection }),
 } ) );
 
 

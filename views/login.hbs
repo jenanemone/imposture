@@ -1,10 +1,41 @@
-<h3><i class="fas fa-book-reader"></i></h3>
-<div class="section">
-    <p class="lead">Create public and private stories from your life</p>
-</div>
-<div class="divider"></div>
-<div class="section">
-    <a href="/auth/google" class="btn red darken-1">
-        <i class="fab fa-google left"></i> Login with Google
-    </a>
-</div>
+{{> _header}}
+
+
+
+<main class="container">
+  <div class="row justify-content-center">
+    <section class="col-6 mt-5">
+       {{#if locals.messages.errors}} 
+       
+        {{#each errors}} 
+            console.log(error)
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            name="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+
+{{> _footer}}
