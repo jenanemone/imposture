@@ -4,3 +4,17 @@
 * {
     box-sizing: border-box;
 }
+
+/*****************************
+      *** TYPOGRAPHY ***
+******************************/
+
+html {
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+.brand-logo,
+.input-field,
+a {
+    font-family: 'Tenor Sans', sans-serif;
+}

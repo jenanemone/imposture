@@ -3,10 +3,12 @@ const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
-const exphbs = require('express-handlebars')
+//const exphbs = require('express-handlebars')
+const ejs = require('ejs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
+const flash = require("express-flash");
 const logger = require('morgan');
 const connectDB = require('./config/database');
 
@@ -24,17 +26,20 @@ require ('./config/passport')(passport);
 connectDB();
 
 // handlebars helpers
-const { formatDate, stripTags, editIcon, truncate, select } = require('./helpers/hbs');
+//const { formatDate, stripTags, editIcon, truncate, select } = require('./helpers/hbs');
 
 // set handlebars for viewing
-app.engine('.hbs', exphbs.engine( { helpers: {
-    formatDate,
-    stripTags,
-    truncate,
-    editIcon,
-    select
-}, defaultLayout: 'main', extname: '.hbs' } ) );
-app.set('view engine', '.hbs');
+// app.engine('.hbs', exphbs.engine( { helpers: {
+//     formatDate,
+//     stripTags,
+//     truncate,
+//     editIcon,
+//     select
+// }, defaultLayout: 'main', extname: '.hbs' } ) );
+// app.set('view engine', '.hbs');
+
+// Try again with EJS
+app.set('view engine', 'ejs');
 
 // For connection
 // let store = MongoStore.create({
@@ -60,6 +65,7 @@ app.use(session({
    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
 } ) );
 
+app.use(flash());
 
 // Passport middleware
 app.use(passport.initialize() );

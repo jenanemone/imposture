@@ -10,6 +10,14 @@ const script = require('../models/Script');
 const vault = require('../models/Vault');
 
 module.exports = {
+    // getPractica: async (req, res) => {
+    //     try {
+    //         const practica = await Practicum.find().sort({ createdAt: "desc" }).lean();
+    //         res.render("promptCentral.ejs", { posts: posts });
+    //       } catch (err) {
+    //         console.log(err);
+    //       }
+    // },
     createPractice: async (req, res) => {
         try {
             await Practicum.create( {
@@ -26,7 +34,7 @@ module.exports = {
             await Practicum.remove( { _id: req.params.id } );
             console.log('deleted practice')
 
-            res.redirect('/dashboard');
+            res.redirect('/promptCentral');
         } catch (err) {
             console.log('no deletay for you')
         }
