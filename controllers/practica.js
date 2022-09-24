@@ -5,19 +5,19 @@
 // Reroute to analysis
 
 
-const practice = require('../models/Practicum');
-const script = require('../models/Script');
-const vault = require('../models/Vault');
+const Practicum = require('../models/Practicum');
+//const script = require('../models/Script');
+const Analysis = require('../models/Analysis');
 
 module.exports = {
-    // getPractica: async (req, res) => {
-    //     try {
-    //         const practica = await Practicum.find().sort({ createdAt: "desc" }).lean();
-    //         res.render("promptCentral.ejs", { posts: posts });
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    // },
+    getPractica: async (req, res) => {
+        try {
+            const practica = await Practicum.find().sort({ createdAt: "desc" }).lean();
+            res.render("promptCentral.ejs", { posts: posts });
+          } catch (err) {
+            console.log(err);
+          }
+    },
     createPractice: async (req, res) => {
         try {
             await Practicum.create( {

@@ -86,7 +86,7 @@ app.use(methodOverride("_method"));
 app.use("/", mainRoutes);
 
 // app.use('/', require('./routes/index') );
-// app.use('/auth', require('./routes/auth') );
+//app.use('/auth', require('./routes/auth') );
 //app.use('/publicSpeech', require('./routes/publicSpeech') );
 //app.use('/pastPractica', require ('./routes/pastPractica') );
 //app.use('/analysis', require('./routes/analysis') );

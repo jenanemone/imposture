@@ -2,15 +2,17 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 
+// Gets the login page
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/promptCentral");
   }
   res.render("login", {
-    title: "Login",
+    title: "Imposture Login",
   });
 };
 
+// Sends the login attempt
 exports.postLogin = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -26,6 +28,7 @@ exports.postLogin = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+  // Uses passport to authorize
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
@@ -39,11 +42,12 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      res.redirect(req.session.returnTo || "/promptCentral");
     });
   })(req, res, next);
 };
 
+// Logout
 exports.logout = (req, res) => {
   req.logout(() => {
     console.log('User has logged out.')
@@ -56,15 +60,18 @@ exports.logout = (req, res) => {
   });
 };
 
+// Get the signup page
 exports.getSignup = (req, res) => {
-  if (req.user) {
-    return res.redirect("/profile");
+  // If we already have a user, just log them in
+  if (req.user) { 
+    return res.redirect("/promptCentral");
   }
   res.render("signup", {
     title: "Create Account",
   });
 };
 
+// Post signup attempt
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
