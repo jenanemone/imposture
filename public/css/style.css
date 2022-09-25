@@ -4,3 +4,38 @@
 * {
     box-sizing: border-box;
 }
+
+/*****************************
+      *** TYPOGRAPHY ***
+******************************/
+
+html {
+    font-family: 'Tenor Sans', sans-serif;
+}
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand-logo,
+.input-field,
+a {
+    font-family: 'Tenor Sans', sans-serif;
+}
+.btn {
+    margin: 15px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+    min-height: 400px;
+}
+footer,
+header {
+
+    width: 100%;
+}

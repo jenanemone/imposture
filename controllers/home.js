@@ -5,6 +5,11 @@
 
 module.exports = {
     getIndex: (req, res) => {
-        res.render("index.ejs")
-    }
+        if (req.user) {
+            res.redirect("/login");
+        }
+        else {
+            res.render("index.ejs")
+        }
+    } 
 }

@@ -3,7 +3,6 @@
 // Insert into Mongo
 
 // Reroute to analysis
-
 const Practicum = require('../models/Practicum');
 //const script = require('../models/Script');
 //const Analysis = require('../models/Analysis');
@@ -11,19 +10,19 @@ const Practicum = require('../models/Practicum');
 module.exports = {
     getPractica: async (req, res) => {
         try {
-            const practica = await Practicum.find().sort({ createdAt: "desc" }).lean();
-            res.render("promptCentral.ejs", { practica: practica});
+            const practica = await Practicum.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean();
+            res.render("pastPractica.ejs", { practica: practica, user: req. user });
           } catch (err) {
             console.log(err);
           }
     },
-    createPractice: async (req, res) => {
+    
+    createPracticum: async (req, res) => {
         try {
             await Practicum.create( {
                 // stuff goes in here
                 user: req.user.id,
-                fileRef: req.body.fileRef,
-                status: 'raw',
+                file: req.body.file,
             })
             console.log("practice has been stored in Mongo");
             res.redirect('/publicSpeech');
@@ -31,7 +30,7 @@ module.exports = {
             console.log(err);
         }
     },
-    deletePractice: async (req, res) => {
+    deletePracticum: async (req, res) => {
         try {
             const practicum = await Practicum.findById( { _id: req.params.id } );
             await Practicum.remove( { _id: req.params.id } );

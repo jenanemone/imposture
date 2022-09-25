@@ -28,6 +28,8 @@ if (navigator.mediaDevices) {
       const blob = new Blob(chunks, {"type": "audio/ogg; codecs=opus"});
       audio.src = window.URL.createObjectURL(blob);
 
+      // TODO: HOW TO SAVE LOCALLY AND SEND REFERENCE TO THE RELEVANT DOCUMENT?
+
       // Clear the `chunks` buffer so that you can record again.
       chunks = [];
     };

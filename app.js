@@ -13,8 +13,7 @@ const logger = require('morgan');
 const connectDB = require('./config/database');
 
 const mainRoutes = require('./routes/main');
-const practiceRoutes = require("./routes/publicSpeech");
-const vaultRoutes = require('./routes/pastPractica');
+const boardRoutes = require("./routes/dashboard");
 
 // env config
 require('dotenv').config( { path: './config/.env' } );
@@ -25,27 +24,8 @@ require ('./config/passport')(passport);
 // connect to database
 connectDB();
 
-// handlebars helpers
-//const { formatDate, stripTags, editIcon, truncate, select } = require('./helpers/hbs');
-
-// set handlebars for viewing
-// app.engine('.hbs', exphbs.engine( { helpers: {
-//     formatDate,
-//     stripTags,
-//     truncate,
-//     editIcon,
-//     select
-// }, defaultLayout: 'main', extname: '.hbs' } ) );
-// app.set('view engine', '.hbs');
-
-// Try again with EJS
+// Use EJS
 app.set('view engine', 'ejs');
-
-// For connection
-// let store = MongoStore.create({
-//     client: mongoose.connection.getClient()
-// });
-
 
 // Static folder
 app.use( express.static( path.join( __dirname, "public" ) ) );
@@ -62,7 +42,6 @@ app.use(session({
     secret: 'samba rhumba',
     resave: false,
     saveUninitialized: false,
-   // store: new MongoStore({ mongooseConnection: mongoose.connection }),
 } ) );
 
 app.use(flash());
@@ -84,12 +63,7 @@ app.use(methodOverride("_method"));
 // Routes
 
 app.use("/", mainRoutes);
-
-// app.use('/', require('./routes/index') );
-//app.use('/auth', require('./routes/auth') );
-//app.use('/publicSpeech', require('./routes/publicSpeech') );
-//app.use('/pastPractica', require ('./routes/pastPractica') );
-//app.use('/analysis', require('./routes/analysis') );
+app.use("/dashboard", boardRoutes);
 
 const PORT = process.env.PORT || 5000;
 
