@@ -21,8 +21,8 @@ if (navigator.mediaDevices) {
     mediaRecorder.onstop = (event) => {
       const audio = new Audio();
       audio.setAttribute("controls", "");
-      $("#sound-clip").append(audio);
-      $("#sound-clip").append("<br />");
+      document.querySelector(".recordings").append(audio);
+      document.querySelector(".recordings").append("<br />");
 
       // Combine the audio chunks into a blob, then point the empty audio clip to that blob.
       const blob = new Blob(chunks, {"type": "audio/ogg; codecs=opus"});
@@ -35,15 +35,15 @@ if (navigator.mediaDevices) {
     };
 
     // Set up event handler for the "Record" button.
-    $("#record").on("click", () => {
+    document.getElementById("record").on("click", () => {
       if (recording) {
         mediaRecorder.stop();
         recording = false;
-        $("#record").html("Record");
+        document.getElementById("record").html("Record");
       } else {
         mediaRecorder.start();
         recording = true;
-        $("#record").html("Stop");
+        document.getElementById("record").html("Stop");
       }
     });
 
