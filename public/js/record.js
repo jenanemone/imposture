@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
+
 // initialize elements we'll use
 const recordButton = document.getElementById('recordButton');
 const recordButtonImage = recordButton.firstElementChild;
@@ -44,7 +42,7 @@ function record() {
 
   // browser supports getUserMedia
   // change image in button
-  recordButtonImage.src = `/images/${mediaRecorder && mediaRecorder.state === 'recording' ? 'microphone' : 'stop'}.png`;
+  recordButtonImage.src = `../assets/images/${mediaRecorder && mediaRecorder.state === 'recording' ? 'microphone' : 'stop'}.png`;
   if (!mediaRecorder) {
     // start recording
     navigator.mediaDevices.getUserMedia({
@@ -59,7 +57,7 @@ function record() {
       .catch((err) => {
         alert(`The following error occurred: ${err}`);
         // change image in button
-        recordButtonImage.src = '/images/microphone.png';
+        recordButtonImage.src = '../assets/images/microphone.png';
       });
   } else {
     // stop recording
@@ -89,10 +87,10 @@ function playRecording(e) {
   if (audio && audio.tagName === 'AUDIO') {
     if (audio.paused) {
       audio.play();
-      button.firstElementChild.src = 'images/pause.png';
+      button.firstElementChild.src = '../assets/images/pause.png';
     } else {
       audio.pause();
-      button.firstElementChild.src = 'images/play.png';
+      button.firstElementChild.src = '../assets/images/play.png';
     }
   }
 }
@@ -103,13 +101,13 @@ function createRecordingElement(file) {
   const audio = document.createElement('audio');
   audio.src = file;
   audio.onended = (e) => {
-    e.target.nextElementSibling.firstElementChild.src = 'images/play.png';
+    e.target.nextElementSibling.firstElementChild.src = '../assets/images/play.png';
   };
   recordingElement.appendChild(audio);
   const playButton = document.createElement('button');
   playButton.classList.add('play-button', 'btn', 'border', 'shadow-sm', 'text-center', 'd-block', 'mx-auto');
   const playImage = document.createElement('img');
-  playImage.src = '/images/play.png';
+  playImage.src = '../assets/images/play.png';
   playImage.classList.add('img-fluid');
   playButton.appendChild(playImage);
   playButton.addEventListener('click', playRecording);
@@ -119,7 +117,7 @@ function createRecordingElement(file) {
 
 // fetch recordings
 function fetchRecordings() {
-  fetch('/recordings')
+  fetch('../assets/recordings')
     .then((response) => response.json())
     .then((response) => {
       if (response.success && response.files) {
@@ -131,7 +129,9 @@ function fetchRecordings() {
         });
       }
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.log(err)
+    });
 }
 
 function saveRecording() {
@@ -148,7 +148,7 @@ function saveRecording() {
       fetchRecordings();
     })
     .catch((err) => {
-      console.error(err);
+      console.log(err);
       alert('An error occurred, please try again later');
       resetRecording();
     });

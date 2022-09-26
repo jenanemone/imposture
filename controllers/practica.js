@@ -55,4 +55,11 @@ module.exports = {
           console.log(err);
         }
       },
+      // getSessionRecordings: async (req, res) => {
+      //   try {
+          
+      //   } catch (err) {
+      //     console.log(err);
+      //   }
+      // }
 }

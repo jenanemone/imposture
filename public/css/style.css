@@ -39,3 +39,16 @@ header {
 
     width: 100%;
 }
+.wrecks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.wrecks * {
+    margin: 15px;
+}
+.wrecks img {
+    background-color: white;
+    max-width: 75px;
+}

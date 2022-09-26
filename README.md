@@ -1,3 +1,12 @@
+TODO:
+- Configure the routes for /record and /recordings based on index.js
+- Pick a CSS package or build myself
+- Debug saving session (probably due to #1 issues)
+- Create analysis page
+- Hook up STT and SA
+- Fix logout
+
+
 Config: has .env, also has link to db and passport creation methods
 
 CONTROLLERS:

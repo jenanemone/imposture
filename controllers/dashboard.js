@@ -7,11 +7,6 @@
 
 const Practicum = require('../models/Practicum');
 const practica = require('./practica');
-//const script = require('../models/Script');
-//const Analysis = require('../models/Analysis');
-const path = require('path');
-const fs = require('fs');
-const multer = require('multer');
 
 module.exports = {
     getDashboard: async (req, res) => {

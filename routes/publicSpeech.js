@@ -10,7 +10,7 @@ const router = express.Router();
 const recordings = require("../controllers/record");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/dashboard/record", ensureAuth, recordings.loadSeshRecordings);
+//router.get("/record", ensureAuth, recordings.loadSeshRecordings);
 // const express = require("express");
 // const router = express.Router();
 // //const authController = require("../controllers/auth");
