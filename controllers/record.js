@@ -5,6 +5,7 @@ const multer = require('multer');
 
 module.exports = {
   createRecording: async (req, res) => {
+    console.log("found createRecording");
     const storage = multer.diskStorage({
       destination(req, file, cb) {
         cb(null, 'uploads/');

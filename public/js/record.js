@@ -117,7 +117,7 @@ function createRecordingElement(file) {
 
 // fetch recordings
 function fetchRecordings() {
-  fetch('/assets/recordings')
+  fetch('/record/fetchSesh')
     .then((response) => response.json())
     .then((response) => {
       console.log("got inside fetch")
@@ -138,7 +138,7 @@ function fetchRecordings() {
 function saveRecording() {
   const formData = new FormData();
   formData.append('audio', audioBlob, 'recording.mp3');
-  fetch('/dashboard/publicSpeech/record', {
+  fetch('/record/saveTake', {
     method: 'POST',
     body: formData,
   })

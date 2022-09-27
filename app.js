@@ -13,6 +13,7 @@ const connectDB = require('./config/database');
 
 const mainRoutes = require('./routes/main');
 const boardRoutes = require("./routes/dashboard");
+const recordRoutes = require("./routes/record");
 
 // env config
 require('dotenv').config( { path: './config/.env' } );
@@ -64,9 +65,10 @@ app.use(function (req, res, next) {
 app.use(methodOverride("_method"));
 
 // Routes
-
 app.use("/", mainRoutes);
 app.use("/dashboard", boardRoutes);
+app.use("/record", recordRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
