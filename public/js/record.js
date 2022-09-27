@@ -117,9 +117,10 @@ function createRecordingElement(file) {
 
 // fetch recordings
 function fetchRecordings() {
-  fetch('../assets/recordings')
+  fetch('/assets/recordings')
     .then((response) => response.json())
     .then((response) => {
+      console.log("got inside fetch")
       if (response.success && response.files) {
         recordingsContainer.innerHTML = ''; // remove all children
         response.files.forEach((file) => {

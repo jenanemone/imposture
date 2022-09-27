@@ -3,7 +3,6 @@ const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
-//const exphbs = require('express-handlebars')
 const ejs = require('ejs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -38,10 +37,14 @@ app.use(express.json());
 app.use(logger("dev"));
 
 // Sessions
+let store = MongoStore.create({
+    client: mongoose.connection.getClient()
+})
 app.use(session({
     secret: 'samba rhumba',
     resave: false,
     saveUninitialized: false,
+    store: store
 } ) );
 
 app.use(flash());
