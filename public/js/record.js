@@ -138,7 +138,7 @@ function fetchRecordings() {
 function saveRecording() {
   const formData = new FormData();
   formData.append('audio', audioBlob, 'recording.mp3');
-  fetch('/record', {
+  fetch('/dashboard/publicSpeech/record', {
     method: 'POST',
     body: formData,
   })

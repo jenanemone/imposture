@@ -20,7 +20,7 @@ module.exports = {
   },
   getPublicSpeech: async (req, res) => {
     try {
-        res.render("publicSpeech.ejs", { user: req.user });
+        res.render("publicSpeech.ejs", { user: req.user, seshRecordings: req.body.seshRecordings });
         
     } catch (err) {
         console.log(err);
