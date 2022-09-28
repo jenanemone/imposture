@@ -42,7 +42,7 @@ let store = MongoStore.create({
     client: mongoose.connection.getClient()
 })
 app.use(session({
-    secret: 'samba rhumba',
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false,
     store: store

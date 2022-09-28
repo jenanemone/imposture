@@ -10,8 +10,8 @@ router.get("/", ensureAuth, dashboardController.getDashboard);
 
 router.get("/publicSpeech", ensureAuth, dashboardController.getPublicSpeech);
 
-router.get("/publicSpeech/recordings", ensureAuth, recordController.loadSeshRecordings);
-router.post("/publicSpeech/createRecording", ensureAuth, recordController.createRecording);
+//router.get("/publicSpeech/recordings", ensureAuth, recordController.loadSeshRecordings);
+//router.post("/publicSpeech/createRecording", ensureAuth, recordController.createRecording);
 
 router.get("/pastPractica", ensureAuth, dashboardController.getPastPractica);
 

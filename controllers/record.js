@@ -8,7 +8,7 @@ module.exports = {
     console.log("found createRecording");
     const storage = multer.diskStorage({
       destination(req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, '../uploads/');
       },
       filename(req, file, cb) {
         const fileNameArr = file.originalname.split('.');
@@ -21,7 +21,7 @@ module.exports = {
   loadSeshRecordings: async (req, res) => {
     try {
       console.log("try loading current sessions");
-      let files = fs.readdirSync(path.join(__dirname, 'uploads'));
+      let files = fs.readdirSync('uploads');
       files = files.filter((file) => {
         // check that the files are audio files
         const fileNameArr = file.split('.');
