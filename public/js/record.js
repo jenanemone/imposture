@@ -13,18 +13,21 @@ let audioBlob = null; // the blob that will hold the recorded audio
 
 function mediaRecorderDataAvailable(e) {
   chunks.push(e.data);
+  console.log("pushed chunks in mediaRecorderDataAvailable");
 }
 
 function mediaRecorderStop() {
   // check if there are any previous recordings and remove them
   if (recordedAudioContainer.firstElementChild.tagName === 'AUDIO') {
     recordedAudioContainer.firstElementChild.remove();
+    console.log("removed audio from mediaRecorderStop")
   }
   const audioElm = document.createElement('audio');
   audioElm.setAttribute('controls', ''); // add controls
   audioBlob = new Blob(chunks, { type: 'audio/mp3' });
   const audioURL = window.URL.createObjectURL(audioBlob);
   audioElm.src = audioURL;
+  console.log("audioURL created from mediaRecorderStop", audioURL);
   // show audio
   recordedAudioContainer.insertBefore(audioElm, recordedAudioContainer.firstElementChild);
   recordedAudioContainer.classList.add('d-flex');
@@ -37,6 +40,7 @@ function mediaRecorderStop() {
 function record() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     alert('Your browser does not support recording!');
+    console.log('record() triggered')
     return;
   }
 
@@ -53,6 +57,7 @@ function record() {
         mediaRecorder.start();
         mediaRecorder.ondataavailable = mediaRecorderDataAvailable;
         mediaRecorder.onstop = mediaRecorderStop;
+        console.log('stream stuff inside ')
       })
       .catch((err) => {
         alert(`The following error occurred: ${err}`);
@@ -97,7 +102,7 @@ function playRecording(e) {
 
 function createRecordingElement(file) {
   const recordingElement = document.createElement('div');
-  recordingElement.classList.add('col-lg-2', 'col', 'recording', 'mt-3');
+  recordingElement.classList.add('col-lg-2', 'col', 'recording', 'mt-3', 'bg-bright');
   const audio = document.createElement('audio');
   audio.src = file;
   audio.onended = (e) => {
@@ -117,6 +122,7 @@ function createRecordingElement(file) {
 
 // fetch recordings
 function fetchRecordings() {
+
   fetch('/record/fetchSesh')
     .then((response) => response.json())
     .then((response) => {
@@ -124,8 +130,8 @@ function fetchRecordings() {
       if (response.success && response.files) {
         recordingsContainer.innerHTML = ''; // remove all children
         response.files.forEach((file) => {
-          const recordingElement = createRecordingElement(file);
-          // console.log(file, recordingElement);
+          const recordingElement = createRecordingElement('../uploads' + file);
+          console.log(file, recordingElement);
           recordingsContainer.appendChild(recordingElement);
         });
       }

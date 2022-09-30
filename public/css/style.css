@@ -31,7 +31,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 400px;
     min-height: 400px;
 }
 footer,
@@ -46,9 +45,11 @@ header {
     align-items: center;
 }
 .wrecks * {
-    margin: 15px;
+    margin: 5%;
+    padding: 20px;
+    outline: 2px dashed gray;
 }
 .wrecks img {
-    background-color: white;
+    background-color: blue;
     max-width: 75px;
 }
