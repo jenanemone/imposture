@@ -28,6 +28,7 @@ module.exports = {
         const fileNameArr = file.split('.');
         return fileNameArr[fileNameArr.length - 1] === 'mp3';
       }).map((file) => `/${file}`);
+      console.log(res);
       res.json({ success: true, files });
     } catch (err) {
     console.log(err);

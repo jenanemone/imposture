@@ -93,7 +93,9 @@ app.get('/recordings', (req, res) => {
     const fileNameArr = file.split('.');
     return fileNameArr[fileNameArr.length - 1] === 'mp3';
   }).map((file) => `/${file}`);
-  return res.json({ success: true, files });
+  const result = res.json({ success: true, files });
+  console.log(files);
+  return result;
 });
 
 

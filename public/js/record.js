@@ -142,8 +142,11 @@ async function fetchRecordings() {
       if (response.success && response.files) {
         recordingsContainer.innerHTML = ''; // remove all children
         response.files.forEach((file) => {
-          const recordingElement = createRecordingElement('../../uploads' + file);
+          const recordingElement = createRecordingElement('uploads' + file);
           console.log(file, recordingElement);
+          const fileName = String(file);
+          recordingElement.src = "uploads" + fileName;
+          console.log("src",recordingElement.src);
           recordingsContainer.appendChild(recordingElement);
         });
       }

@@ -1,0 +1,26 @@
+<%- include('partials/header') -%> 
+
+<main class="pt-5">
+  <div class="container wrecks">
+    <h1 class="text-center">Record Your Voice</h1>
+    <div class="record-button-container text-center mt-5">
+      <button class="bg-transparent border btn record-button rounded-circle shadow-sm text-center" id="recordButton">
+        <img src="/assets/images/microphone.png" alt="Record" class="img-fluid" />
+      </button>
+    </div>
+    <div class="recorded-audio-container mt-5 d-none flex-column justify-content-center align-items-center" 
+      id="recordedAudioContainer">
+      <div class="actions mt-3">
+        <button class="btn btn-success rounded-pill" id="saveButton">Save</button>
+        <button class="btn btn-danger rounded-pill" id="discardButton">Discard</button>
+      </div>
+    </div>
+    <h2 class="mt-3">Saved Recordings</h2>
+    <div class="recordings row" id="recordings">
+     
+    </div>
+  </div>
+  <script src="/js/record.js"></script>
+</main>
+
+<%- include('partials/footer') -%> 
