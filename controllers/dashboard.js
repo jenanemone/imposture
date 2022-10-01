@@ -1,6 +1,6 @@
 // Show dashboard
 
-// Reroute to publicSpeech
+// Reroute to speech
 
 // Reroute to analysis
 
@@ -18,15 +18,7 @@ module.exports = {
     }
     console.log("entered dashboard");
   },
-  getPublicSpeech: async (req, res) => {
-    try {
-        res.render("publicSpeech.ejs", { user: req.user, seshRecordings: req.body.seshRecordings });
-        
-    } catch (err) {
-        console.log(err);
-    }
-    console.log("entered getPublicSpeech");
-  },
+  
   getPastPractica: async (req, res) => {
     try {
         res.render("pastPractica.ejs", { practica: practica, user: req.user })

@@ -49,7 +49,7 @@ CONTROLLERS:
             => after login page and successful authentication
             - go to public speech
             - go to past practica
-    - PUBLICSPEECH
+    - speech
         - create Practicum
         - delete Practicum
         - analyze

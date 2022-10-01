@@ -10,7 +10,10 @@
 const express = require("express");
 const router = express.Router();
 const recordings = require("../controllers/record");
+const speechController = require("../controllers/speech");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
+
+router.get("/", ensureAuth, speechController.getSpeech);
 
 module.exports = router;
 //router.get("/record", ensureAuth, recordings.loadSeshRecordings);
@@ -22,7 +25,7 @@ module.exports = router;
 // //const analysisController = require("../controllers/analysis");
 // const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-// router.get("/", practicaController.getPublicSpeech);
+// router.get("/", practicaController.getspeech);
 // //router.post()
 // router.post("/createPracticum", ensureAuth, practicaController.createPracticum);
 // //router.post("analyzePracticum", ensureAuth, practicaController.analyzePracticum);

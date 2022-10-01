@@ -8,7 +8,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", ensureAuth, homeController.getHome);
 
-router.get("/publicSpeech", ensureAuth, homeController.getPublicSpeech);
+//router.get("/speech", ensureAuth, homeController.getspeech);
 
 router.get("/pastPractica", ensureAuth, homeController.getPastPractica);
 

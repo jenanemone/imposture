@@ -1,4 +1,4 @@
-const fs = require('fs');
+
 const multer = require('multer');
 
 
@@ -21,13 +21,14 @@ module.exports = {
   loadSeshRecordings: async (req, res) => {
     try {
       console.log("try loading current sessions");
-      let files = fs.readdirSync('uploads');
+      
+      let files = fs.readdirSync('../uploads');
       files = files.filter((file) => {
         // check that the files are audio files
         const fileNameArr = file.split('.');
         return fileNameArr[fileNameArr.length - 1] === 'mp3';
       }).map((file) => `/${file}`);
-      return res.json({ success: true, files });
+      res.json({ success: true, files });
     } catch (err) {
     console.log(err);
     }

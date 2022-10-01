@@ -84,24 +84,26 @@ function resetRecording() {
 
 function playRecording(e) {
   let button = e.target;
+  console.log(button);
   if (button.tagName === 'IMG') {
     // get parent button
     button = button.parentElement;
+    console.log(button);
   }
   const audio = button.previousElementSibling;
-  console.log(audio);
+  // const audio = new Audio(audioTag);
+  // console.log(audio);
 
   if (audio && audio.tagName === 'AUDIO') {
     if (audio.paused) {
-      let playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function () {
-
-        }).catch(function (err) {
-          console.log(err);
-        })
-      }
-      //  audio.play();
+      // let playPromise = audio.play();
+      // if (playPromise !== undefined) {
+      //   playPromise.then(function () {
+      //   }).catch(function (err) {
+      //     console.log(err);
+      //   })
+      // }
+      audio.play();
       button.firstElementChild.src = '../assets/images/pause.png';
     } else {
       audio.pause();
@@ -131,16 +133,16 @@ function createRecordingElement(file) {
 }
 
 // fetch recordings
-function fetchRecordings() {
+async function fetchRecordings() {
 
-  fetch('/recordings')
+  await fetch('/recordings')
     .then((response) => response.json())
     .then((response) => {
       console.log("got inside fetch")
       if (response.success && response.files) {
-        //recordingsContainer.innerHTML = ''; // remove all children
+        recordingsContainer.innerHTML = ''; // remove all children
         response.files.forEach((file) => {
-          const recordingElement = createRecordingElement('../uploads' + file);
+          const recordingElement = createRecordingElement('../../uploads' + file);
           console.log(file, recordingElement);
           recordingsContainer.appendChild(recordingElement);
         });

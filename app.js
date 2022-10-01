@@ -12,11 +12,11 @@ const logger = require('morgan');
 const connectDB = require('./config/database');
 const multer = require('multer');
 const fs = require('fs');
-const cors = require('cors');
 
 const mainRoutes = require('./routes/main');
 const boardRoutes = require("./routes/dashboard");
-const recordRoutes = require("./routes/record");
+//const recordRoutes = require("./routes/record");
+const speechRoutes = require("./routes/speech");
 
 // env config
 require('dotenv').config( { path: './config/.env' } );
@@ -41,9 +41,6 @@ app.use(express.json());
 //Logging
 app.use(logger("dev"));
 
-// cors
-app.use(cors({ origin: 'http://localhost:5500'}));
-
 // Sessions
 let store = MongoStore.create({
     client: mongoose.connection.getClient()
@@ -67,14 +64,14 @@ app.use(function (req, res, next) {
     next()
 })
 
-
 //Use forms for put / delete
 app.use(methodOverride("_method"));
 
 // Routes
 app.use("/", mainRoutes);
 app.use("/dashboard", boardRoutes);
-app.use("/record", recordRoutes);
+//app.use("/record", recordRoutes);
+app.use("/speech", speechRoutes);
 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
@@ -90,7 +87,7 @@ const storage = multer.diskStorage({
 app.post('/record', upload.single('audio'), (req, res) => res.json({ success: true }));
 
 app.get('/recordings', (req, res) => {
-  let files = fs.readdirSync(path.join(__dirname, 'uploads'));
+  let files = fs.readdirSync('uploads');
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
