@@ -12,6 +12,7 @@ const router = express.Router();
 const recordings = require("../controllers/record");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
+module.exports = router;
 //router.get("/record", ensureAuth, recordings.loadSeshRecordings);
 // const express = require("express");
 // const router = express.Router();

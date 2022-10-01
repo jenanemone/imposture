@@ -1,4 +1,3 @@
-const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 
@@ -13,6 +12,7 @@ module.exports = {
       filename(req, file, cb) {
         const fileNameArr = file.originalname.split('.');
         cb(null, `${Date.now()}.${fileNameArr[fileNameArr.length - 1]}`);
+        console.log(filename);
       },
     });
     const upload = multer({ storage });

@@ -89,9 +89,19 @@ function playRecording(e) {
     button = button.parentElement;
   }
   const audio = button.previousElementSibling;
+  console.log(audio);
+
   if (audio && audio.tagName === 'AUDIO') {
     if (audio.paused) {
-      audio.play();
+      let playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function () {
+
+        }).catch(function (err) {
+          console.log(err);
+        })
+      }
+      //  audio.play();
       button.firstElementChild.src = '../assets/images/pause.png';
     } else {
       audio.pause();
@@ -123,12 +133,12 @@ function createRecordingElement(file) {
 // fetch recordings
 function fetchRecordings() {
 
-  fetch('/record/fetchSesh')
+  fetch('/recordings')
     .then((response) => response.json())
     .then((response) => {
       console.log("got inside fetch")
       if (response.success && response.files) {
-        recordingsContainer.innerHTML = ''; // remove all children
+        //recordingsContainer.innerHTML = ''; // remove all children
         response.files.forEach((file) => {
           const recordingElement = createRecordingElement('../uploads' + file);
           console.log(file, recordingElement);
@@ -144,7 +154,8 @@ function fetchRecordings() {
 function saveRecording() {
   const formData = new FormData();
   formData.append('audio', audioBlob, 'recording.mp3');
-  fetch('/record/saveTake', {
+  console.log('form data', formData);
+  fetch('/record', {
     method: 'POST',
     body: formData,
   })
