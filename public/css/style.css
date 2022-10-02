@@ -53,3 +53,7 @@ header {
     background-color: blue;
     max-width: 75px;
 }
+#recordings {
+    display: flex;
+    flex-direction: column;
+}
