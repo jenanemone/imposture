@@ -1,4 +1,4 @@
-<%- include('partials/header') -%> 
+<%- include('partials/recordHeader') -%> 
 
 <main class="pt-5">
   <div class="container wrecks">
@@ -20,7 +20,18 @@
      
     </div>
   </div>
-  <script src="/js/record.js"></script>
+  <push-to-talk-button
+    appid="39285e2b-b8dc-4de7-b989-81e5dff11685"
+    intro="Try saying 'Hello'"
+    placement="bottom">
+  </push-to-talk-button>
+  <transcript-drawer
+    hint='["Try: Hello", "Try: Hi there"]'>
+  </transcript-drawer>
+  <intro-popup>
+    <span slot="priming-body">
+      You'll be able to control the website faster with voice.
+    </span>
+  </intro-popup>
+  <script src="/js/speechly.js"></script>
 </main>
-
-<%- include('partials/footer') -%> 

@@ -2,7 +2,7 @@
 module.exports = {
     getSpeech: async (req, res) => {
         try {
-            res.render("speech.ejs", { user: req.user, files: req.body.files });
+            res.render("publicSpeech.ejs", { user: req.user, files: req.body.files });
             
         } catch (err) {
             console.log(err);

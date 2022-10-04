@@ -24,7 +24,7 @@ function mediaRecorderStop() {
   }
   const audioElm = document.createElement('audio');
   audioElm.setAttribute('controls', ''); // add controls
-  audioBlob = new Blob(chunks, { type: 'audio/mp3' });
+  audioBlob = new Blob(chunks, { type: 'audio/ogg' });
   const audioURL = window.URL.createObjectURL(audioBlob);
   audioElm.src = audioURL;
   console.log("audioURL created from mediaRecorderStop", audioURL);
@@ -158,7 +158,7 @@ async function fetchRecordings() {
 
 function saveRecording() {
   const formData = new FormData();
-  formData.append('audio', audioBlob, 'recording.mp3');
+  formData.append('audio', audioBlob, 'recording.ogg');
   console.log('form data', formData);
   fetch('/record', {
     method: 'POST',

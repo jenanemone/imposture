@@ -26,7 +26,7 @@ module.exports = {
       files = files.filter((file) => {
         // check that the files are audio files
         const fileNameArr = file.split('.');
-        return fileNameArr[fileNameArr.length - 1] === 'mp3';
+        return fileNameArr[fileNameArr.length - 1] === 'ogg';
       }).map((file) => `/${file}`);
       console.log(res);
       res.json({ success: true, files });
