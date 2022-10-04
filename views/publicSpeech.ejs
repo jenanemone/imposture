@@ -1,37 +1,22 @@
-<%- include('partials/recordHeader') -%> 
+<%- include('partials/recordHeader') -%>
 
-<main class="pt-5">
-  <div class="container wrecks">
+  <main class="pt-5"> 
     <h1 class="text-center">Record Your Voice</h1>
-    <div class="record-button-container text-center mt-5">
-      <button class="bg-transparent border btn record-button rounded-circle shadow-sm text-center" id="recordButton">
-        <img src="/assets/images/microphone.png" alt="Record" class="img-fluid" />
-      </button>
+    <div class="container wrecks">
+      
+
+      <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685" intro="Try saying 'Hello'" customcssurl="/css/style.css" id="pttButton">
+      </push-to-talk-button>
+      
+      <transcript-drawer hint='["Try: Hello", "Try: Hi there"]'>
+      </transcript-drawer>
+      
+      <intro-popup>
+        <span slot="priming-body">
+          Record your voice!
+        </span>
+      </intro-popup>
+      
     </div>
-    <div class="recorded-audio-container mt-5 d-none flex-column justify-content-center align-items-center" 
-      id="recordedAudioContainer">
-      <div class="actions mt-3">
-        <button class="btn btn-success rounded-pill" id="saveButton">Save</button>
-        <button class="btn btn-danger rounded-pill" id="discardButton">Discard</button>
-      </div>
-    </div>
-    <h2 class="mt-3">Saved Recordings</h2>
-    <div class="recordings row" id="recordings">
-     
-    </div>
-  </div>
-  <push-to-talk-button
-    appid="39285e2b-b8dc-4de7-b989-81e5dff11685"
-    intro="Try saying 'Hello'"
-    placement="bottom">
-  </push-to-talk-button>
-  <transcript-drawer
-    hint='["Try: Hello", "Try: Hi there"]'>
-  </transcript-drawer>
-  <intro-popup>
-    <span slot="priming-body">
-      You'll be able to control the website faster with voice.
-    </span>
-  </intro-popup>
-  <script src="/js/speechly.js"></script>
-</main>
+    <script src="/js/speechly.js"></script>
+  </main>
