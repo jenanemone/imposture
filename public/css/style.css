@@ -19,9 +19,6 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-body * {
-    border: 2px solid pink;
-}
 .brand-logo,
 .input-field,
 a {
@@ -66,18 +63,12 @@ header {
     z-index: 50;
 
   }
-    
-  .HoldableButton {
-    /* border: 2px dashed purple;
-    margin-right: -50%; */
-  }
 
   .pttButton {
     display: flex;
     margin: 0;
     justify-content: center;
     align-items: center;
-    border: 2px dotted red;
   }
   #shadow-root {
     border: 2px solid black;
@@ -97,4 +88,8 @@ header {
 }
 footer * {
     text-align: center;
+}
+.nav-wrap {
+    display: flex;
+    justify-content: space-evenly;
 }
