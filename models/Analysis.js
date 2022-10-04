@@ -5,8 +5,8 @@ const AnalysisSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    fillers: {
-        fillerWords: ["like", 
+    relevantFillers: {
+        listFillerWords: ["like", 
         "maybe", 
         "think", 
         "might",
@@ -16,7 +16,11 @@ const AnalysisSchema = new mongoose.Schema({
         "well"]
     },
     words: {
-        words: []
+        words: words},
+    fillersDected: {fillers: fillers},
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 });
 

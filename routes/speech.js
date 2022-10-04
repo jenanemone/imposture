@@ -18,4 +18,6 @@ router.get("/", ensureAuth, speechController.getSpeech);
 
 router.get("/getFillers", ensureAuth, analysisController.getFillers);
 
+router.post("/createAnalysis", ensureAuth, analysisController.createAnalysis);
+
 module.exports = router;

@@ -41,6 +41,13 @@ function writeAnalysis (fillers) {
     console.log("made it to write",fillers);
 }
 
+function generateAnalysis (words, fillers) {
+    fetch(`../routes/speech/createAnalysis?words=${words}&fillersDetected=${fillers}`)
+    .then(res => res.json())
+    .then(console.log(res))
+    .catch(error => console.log(error))
+}
+
 function lied (event) {
     console.log(event.detail);
 }

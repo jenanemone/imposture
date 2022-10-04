@@ -9,7 +9,7 @@ const Analysis = require("../models/Analysis");
 module.exports = {
     getFillers: async (req, res) => {
         try {
-            // create an analysis object
+            // grab those fillers
             const fillerWords = Analysis
             res.render("publicSpeech.ejs", 
             {
@@ -20,7 +20,12 @@ module.exports = {
       },
       createAnalysis: async (req, res) => {
         try {
-
+            await Analysis.create({
+                words: words,
+                user: req.user.id,
+                relevantFillers: identifiedFillers,
+                fillersDetected: fillers,
+            })
         } catch (error) { console.log(error) }
       },
 }
