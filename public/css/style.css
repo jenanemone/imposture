@@ -41,12 +41,6 @@ header {
 
     width: 100%;
 }
-
-.wrecks * {
-    
-    padding: 20px;
-    outline: 2px dashed gray;
-}
 .wrecks img {
     background-color: blue;
     max-width: 75px;
@@ -74,8 +68,8 @@ header {
   }
     
   .HoldableButton {
-    border: 2px dashed purple;
-    margin-right: -50%;
+    /* border: 2px dashed purple;
+    margin-right: -50%; */
   }
 
   .pttButton {
@@ -100,4 +94,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+footer * {
+    text-align: center;
 }

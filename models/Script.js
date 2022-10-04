@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const PracticumSchema = new mongoose.Schema({
+const ScriptSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -30,4 +30,4 @@ const PracticumSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Practicum', PracticumSchema, 'practicii')
+module.exports = mongoose.model('Script', ScriptSchema, 'scripts')

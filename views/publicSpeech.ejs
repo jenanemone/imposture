@@ -10,13 +10,24 @@
       
       <transcript-drawer hint='["Try: Hello", "Try: Hi there"]'>
       </transcript-drawer>
+
+      <big-transcript
+      placement="top"
+      formattext="false" >
+      </big-transcript>
       
       <intro-popup>
         <span slot="priming-body">
-          Record your voice!
+          Click to record your voice. Click to stop!
         </span>
       </intro-popup>
       
     </div>
+    <section class="transcripts">
+      <h2 id="output" class="text-center">Your Recording Output</h2>
+      <ul id="recording-transcripts">
+
+      </ul>
+    </section>
     <script src="/js/speechly.js"></script>
   </main>

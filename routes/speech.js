@@ -11,8 +11,11 @@ const express = require("express");
 const router = express.Router();
 const recordings = require("../controllers/record");
 const speechController = require("../controllers/speech");
+const analysisController = require("../controllers/analysis");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", ensureAuth, speechController.getSpeech);
+
+router.get("/getFillers", ensureAuth, analysisController.getFillers);
 
 module.exports = router;

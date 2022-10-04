@@ -1,3 +1,5 @@
+const Analysis = require("../models/Analysis");
+
 
 module.exports = {
     getSpeech: async (req, res) => {
@@ -9,5 +11,6 @@ module.exports = {
         }
         console.log("entered getspeech");
       },
+
 }
 
