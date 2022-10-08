@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 // Static folder
 app.use( express.static( path.join( __dirname, "public" ) ) );
 app.use(express.static(path.join( __dirname,'uploads') ) );
-console.log(__dirname);
+
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

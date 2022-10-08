@@ -1,11 +1,11 @@
 <%- include('partials/recordHeader') -%>
 
   <main class="pt-5"> 
-    <h1 class="text-center voice">Record Your Voice</h1>
-    <div class="container wrecks">
+    <h1 class="mx-auto text-2xl text-center">Record Your Voice</h1>
+    <div class="container flex justify-center mt-16">
       
 
-      <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685" intro="Try saying 'Hello'" customcssurl="/css/style.css" id="pttButton">
+      <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685"  customcssurl="/css/style.css" id="pttButton" class="my-4">
       </push-to-talk-button>
       
       <transcript-drawer hint='["Try: Hello", "Try: Hi there"]'>

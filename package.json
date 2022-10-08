@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production nodemon app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "build-css": "tailwindcss -i ./src/main.css -o ./public/css/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
+    "daisyui": "^2.31.0",
     "degit": "^2.8.4",
     "dotenv": "^16.0.2",
     "ejs": "^3.1.8",
@@ -42,7 +44,10 @@
     "wav": "^1.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.12",
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8"
   }
 }

@@ -36,6 +36,9 @@ function collectRecording(event) {
 
 function postRecording(segment) {
     console.log("entered postRecording");
+
+// 
+
     // const scriptUL = document.getElementById("recording-transcripts");
     // const title = "Your Session Recordings";
     // // const transcripts = document.getElementById('transcripts');
