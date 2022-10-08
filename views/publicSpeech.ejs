@@ -5,22 +5,27 @@
     <div class="container flex justify-center mt-16">
       
 
-      <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685"  customcssurl="/css/style.css" id="pttButton" class="my-4">
+      <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685" id="pttButton" class="my-4" gradientstop1="#FF5D73" gradientstop2="7C7A7A"
+      hintbackgroundcolor="#FF5D73"
+      textcolor="#494949"
+      customtypography="true">
       </push-to-talk-button>
       
-      <transcript-drawer hint='["Try: Hello", "Try: Hi there"]'>
+      <transcript-drawer hint='["Try: Hello", "Try: Hi there"]' highlightcolor="#FF5D73" backgroundcolor="#494949">
       </transcript-drawer>
 
       <big-transcript
       placement="top"
-      formattext="false" >
+      formattext="false" 
+      highlightcolor="#FF5D73" backgroundcolor="#494949">
       </big-transcript>
       
-      <intro-popup>
-        <span slot="priming-body">
+      <!-- <intro-popup>
+        <span slot="priming-body" customcssurl="../css/micButton.css"
+        customtypography="true">
           Click to record your voice. Click to stop!
         </span>
-      </intro-popup>
+      </intro-popup> -->
       
     </div>
     <section class="transcripts" id="transcripts">

@@ -2736,6 +2736,11 @@ html {
   background-color: rgb(241 235 235 / var(--tw-bg-opacity));
 }
 
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 93 115 / var(--tw-bg-opacity));
+}
+
 .p-2 {
   padding: 0.5rem;
 }

@@ -21,19 +21,6 @@ function collectRecording(event) {
     }
 }
 
-// async function showRecordings() {
-//     console.log("triggered showRecordings")
-//     const parent = document.querySelector('body');
-//     const section = document.createElement("section");
-//     section.classList.add("sessions");
-//     parent.append(section);
-//     const title = "Your Session Recordings";
-//     const h2 = document.createElement('h2');
-//     h2.textContent = title;
-//     h2.classList.add("text-center");
-//     section.append(h2);
-// }
-
 function postRecording(segment) {
     // populate the h2
     console.log("entered postRecording");
@@ -63,12 +50,14 @@ function postRecording(segment) {
 
     const scriptP = document.createElement("p");
     scriptP.textContent = `${count}: ${scriptContent}`;
+    scriptP.setAttribute("data-timestamp",`${Date.now()}`);
     scriptP.style.width = "80%";
     if (!(count % 2)) {
         scriptP.classList.add("bg-base-100");
     }
     const scriptPlayBtn = document.createElement('i');
     scriptPlayBtn.classList.add("fa-solid", "fa-circle-play");
+    scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
 
