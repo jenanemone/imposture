@@ -23,6 +23,7 @@ body {
 .input-field,
 a {
     font-family: 'Tenor Sans', sans-serif;
+    color: #3b7cc0;
 }
 .btn {
     margin: 15px;
@@ -32,6 +33,7 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
     min-height: 100px;
+    max-width: 85vw;
 }
 footer,
 header {
@@ -64,9 +66,10 @@ header {
 
   }
 
-  .pttButton {
+  #pttButton {
     display: flex;
     margin: 0;
+    padding: 10%;
     justify-content: center;
     align-items: center;
   }
@@ -80,7 +83,7 @@ header {
     z-index: 10;
   }
   .wrecks {
-    width: 200px;
+    /* width: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,4 +95,13 @@ footer * {
 .nav-wrap {
     display: flex;
     justify-content: space-evenly;
+}
+.voice {
+    background: linear-gradient(-45deg, #4fa1f9, #15E8B5, #4fa1f9);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    padding: 6% 5%;
+    font-size: 40px;
+    width: 90%;
 }

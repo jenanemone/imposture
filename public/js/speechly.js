@@ -15,18 +15,44 @@ function collectRecording(event) {
     if (segment.isFinal) {
         // Handle speech segment and make permanent changes to app state
         // Optionally show confirmation
+        //showRecordings();
         window.postMessage({ type: "speechhandled", success: true }, "*");
         postRecording(segment);
     }
 }
 
+// async function showRecordings() {
+//     console.log("triggered showRecordings")
+//     const parent = document.querySelector('body');
+//     const section = document.createElement("section");
+//     section.classList.add("sessions");
+//     parent.append(section);
+//     const title = "Your Session Recordings";
+//     const h2 = document.createElement('h2');
+//     h2.textContent = title;
+//     h2.classList.add("text-center");
+//     section.append(h2);
+// }
+
 function postRecording(segment) {
-    const scriptUL = document.getElementById("recording-transcripts");
-    let scriptContent = "";
-    segment.words.forEach(word => scriptContent += " " + word.value);
-    const scriptLI = document.createElement("li");
-    scriptLI.textContent = `Recording ${count}: ${scriptContent}`;
-    scriptUL.append(scriptLI);
+    console.log("entered postRecording");
+    // const scriptUL = document.getElementById("recording-transcripts");
+    // const title = "Your Session Recordings";
+    // // const transcripts = document.getElementById('transcripts');
+    // const h2 = document.getElementById('output');
+    // // h2.classList.add('text-center');
+    // h2.textContent = title;
+    // // transcripts.append(h2);
+    // let scriptContent = "";
+    // segment.words.forEach(word => scriptContent += " " + word.value);
+    // const scriptLI = document.createElement("li");
+    
+    // scriptLI.textContent = `Recording ${count}: ${scriptContent}`;
+    // const scriptPlay = document.createElement('i');
+    // scriptPlay.classList.add("fa-solid");
+    // scriptPlay.classList.add("fa-circle-play");
+    // scriptLI.appendChild(scriptPlay, scriptLI);
+    // //scriptUL.append(scriptLI);
     count++;
 }
 
