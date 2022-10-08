@@ -35,27 +35,46 @@ function collectRecording(event) {
 // }
 
 function postRecording(segment) {
+    // populate the h2
     console.log("entered postRecording");
+    const h2 = document.getElementById('output')
+    h2.textContent = "Your Session Recordings";
+    h2.classList.add('text-center', 'text-xl'); 
 
-// 
+    // populate with plain output of recordings
+    // First build UL parent and add words from current segment
+    const scriptUL = document.getElementById("recording-transcripts");
+    scriptUL.style.padding = "5% 20%";
+    let scriptContent = "";
+    segment.words.forEach(word => scriptContent += " " + word.value);
 
-    // const scriptUL = document.getElementById("recording-transcripts");
-    // const title = "Your Session Recordings";
-    // // const transcripts = document.getElementById('transcripts');
-    // const h2 = document.getElementById('output');
-    // // h2.classList.add('text-center');
-    // h2.textContent = title;
-    // // transcripts.append(h2);
-    // let scriptContent = "";
-    // segment.words.forEach(word => scriptContent += " " + word.value);
-    // const scriptLI = document.createElement("li");
+    // next create a parent li to hold a p and i
+    const scriptLI = document.createElement("li");
     
-    // scriptLI.textContent = `Recording ${count}: ${scriptContent}`;
-    // const scriptPlay = document.createElement('i');
-    // scriptPlay.classList.add("fa-solid");
-    // scriptPlay.classList.add("fa-circle-play");
-    // scriptLI.appendChild(scriptPlay, scriptLI);
-    // //scriptUL.append(scriptLI);
+    // a div inside li to hold everything 
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.flexDirection = "row";
+    div.style.justifyContent = "space-between";
+    div.style.padding = "1% 0";
+    div.style['align-items'] = "center";
+    
+    // put play and trash and p inside the div
+
+    const scriptP = document.createElement("p");
+    scriptP.textContent = `${count}: ${scriptContent}`;
+    scriptP.style.width = "80%";
+    if (!(count % 2)) {
+        scriptP.classList.add("bg-base-100");
+    }
+    const scriptPlayBtn = document.createElement('i');
+    scriptPlayBtn.classList.add("fa-solid", "fa-circle-play");
+    const scriptTrash = document.createElement("i");
+    scriptTrash.classList.add("fa-solid", "fa-trash-can");
+
+    div.append(scriptPlayBtn,scriptP,scriptTrash);
+    scriptLI.append(div);
+    scriptUL.append(scriptLI);
     count++;
 }
 
