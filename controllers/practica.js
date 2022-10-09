@@ -10,8 +10,8 @@ const Practicum = require('../models/Practicum');
 module.exports = {
     getPractica: async (req, res) => {
         try {
-            const practica = await Practicum.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean();
-            res.render("pastPractica.ejs", { practica: practica, user: req. user });
+            const practica = await Practicum.find({ user: req.user.id }).lean();
+            res.render("practica.ejs", { practica: practica, user: req. user });
           } catch (err) {
             console.log(err);
           }
@@ -55,11 +55,20 @@ module.exports = {
           console.log(err);
         }
       },
-      // getSessionRecordings: async (req, res) => {
-      //   try {
-          
-      //   } catch (err) {
-      //     console.log(err);
-      //   }
-      // }
+      createPractica: async (req, res) => {
+        try {
+          await req.body.allSegments.forEach((e,i) => {
+              e = Practicum.create( {
+              // stuff goes in here
+              user: req.user.id,
+              segment: req.body.allSegments[i],
+          })
+          console.log("practice has been stored in Mongo");
+          })
+            
+            res.redirect('/speech');
+        } catch (err) {
+            console.log(err);
+        }
+    },
 }

@@ -1,15 +1,10 @@
-// The results of a parsed stream go here.
+// The raw stream information is held in Mongo here.
 
 const mongoose = require('mongoose');
 
 const PracticumSchema = new mongoose.Schema({
-    fileTitle: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    fileRef: {
-        type: String,
+    segment: {
+        type: Object,
         required: true
     },
     status: {
