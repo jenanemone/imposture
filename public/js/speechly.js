@@ -1,14 +1,12 @@
 let segment; // contents of speech output 
 let count = 1; // count of output segments
 let allSegments = []; // initialize a segment container 
+let delCount = []; // which elements will we delete
 
 // event listeners
 document
     .getElementsByTagName("push-to-talk-button")[0]
     .addEventListener("speechsegment", collectRecording);
-
-const delBtns = document.querySelectorAll(".fa-trash-can");
-Array.from(delBtns).forEach((btn) => btn.addEventListener("click", remRec))
 
 function collectRecording(event) {
     segment = event.detail;
@@ -16,8 +14,6 @@ function collectRecording(event) {
     console.log("speechsegment message:", segment);
     if (segment.isFinal) {
         // Handle speech segment and make permanent changes to app state
-        // Optionally show confirmation
-        //showRecordings();
         window.postMessage({ type: "speechhandled", success: true }, "*");
         postRecording(segment);
     }
@@ -27,7 +23,7 @@ function postRecording(segment) {
     
     // add the segment to the array
     const object = {
-        id: count,
+        count: count,
         segment: segment
     }
     allSegments.push(object)
@@ -72,6 +68,7 @@ function postRecording(segment) {
     scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
+    scriptTrash.setAttribute("data-count",count);
     scriptTrash.addEventListener('click',remRec)
 
     div.append(scriptPlayBtn,scriptP,scriptTrash);
@@ -81,7 +78,10 @@ function postRecording(segment) {
     // add the save all button and increase the count!
     const saveBtn = document.getElementById('saveAll');
     saveBtn.classList.remove('hidden');
+    saveBtn.addEventListener('click', saveAll)
+
     count++;
+    console.log(count,allSegments);
 }
 
 function analyzeSegment (segment) {
@@ -109,7 +109,26 @@ function lied (event) {
 // removes recording from the temporary array
 async function remRec () {
     try {
-        console.log('entered remRec')
+        
+        // remove the current object from the save array
+        let toDel = this.dataset.count;
+        console.log(toDel);
+        toDel = +toDel;
+        const entry = allSegments.find(obj => obj.count === toDel);
+        const index = allSegments.indexOf(entry);
+        console.log(index,entry)
+        if (index === 0) {
+            allSegments = allSegments.slice(1);
+        } else if (index === allSegments.length - 1) {
+            allSegments.slice(0,allSegments.length - 1);
+        }
+        else {
+            let head = allSegments.slice(0,index);
+            let tail = allSegments.slice(index + 1);
+            allSegments = head.concat(tail);
+        }
+
+        // remove the DOM element
         const parent = this.parentNode; // gets the div
         const grand = parent.parentNode // gets the li
         const great = grand.parentNode; // gets the ul
