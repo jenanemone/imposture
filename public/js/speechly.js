@@ -136,7 +136,26 @@ async function remRec () {
         
     } catch (err) {
         console.log(err)
-    }
-    
-    
+    } 
+}
+
+function saveBatch(allSegments) {
+    // send the stuff from the array to the controller
+    // .then => redirect
+    const data = allSegments;
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 }
