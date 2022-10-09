@@ -1,12 +1,14 @@
-let segment;
-let count = 1;
+let segment; // contents of speech output 
+let count = 1; // count of output segments
+let allSegments = []; // initialize a segment container 
 
+// event listeners
 document
     .getElementsByTagName("push-to-talk-button")[0]
     .addEventListener("speechsegment", collectRecording);
 
-const lis = document.getElementsByTagName("li")
-Array.from(lis).forEach(li => li.addEventListener("click", lied))
+const delBtns = document.querySelectorAll(".fa-trash-can");
+Array.from(delBtns).forEach((btn) => btn.addEventListener("click", remRec))
 
 function collectRecording(event) {
     segment = event.detail;
@@ -22,6 +24,14 @@ function collectRecording(event) {
 }
 
 function postRecording(segment) {
+    
+    // add the segment to the array
+    const object = {
+        id: count,
+        segment: segment
+    }
+    allSegments.push(object)
+
     // populate the h2
     console.log("entered postRecording");
     const h2 = document.getElementById('output')
@@ -50,20 +60,27 @@ function postRecording(segment) {
 
     const scriptP = document.createElement("p");
     scriptP.textContent = `${count}: ${scriptContent}`;
-    scriptP.setAttribute("data-timestamp",`${Date.now()}`);
     scriptP.style.width = "80%";
+    scriptP.style.padding = "1rem";
+    scriptP.style.border = ".025rem solid #FF5D73";
+    scriptP.style["border-radius"] = ".5rem";
     if (!(count % 2)) {
         scriptP.classList.add("bg-base-100");
     }
     const scriptPlayBtn = document.createElement('i');
-    scriptPlayBtn.classList.add("fa-solid", "fa-circle-play");
+    scriptPlayBtn.classList.add("fa-solid", "fa-robot");
     scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
+    scriptTrash.addEventListener('click',remRec)
 
     div.append(scriptPlayBtn,scriptP,scriptTrash);
     scriptLI.append(div);
     scriptUL.append(scriptLI);
+
+    // add the save all button and increase the count!
+    const saveBtn = document.getElementById('saveAll');
+    saveBtn.classList.remove('hidden');
     count++;
 }
 
@@ -87,4 +104,20 @@ function generateAnalysis (words, fillers) {
 
 function lied (event) {
     console.log(event.detail);
+}
+
+// removes recording from the temporary array
+async function remRec () {
+    try {
+        console.log('entered remRec')
+        const parent = this.parentNode; // gets the div
+        const grand = parent.parentNode // gets the li
+        const great = grand.parentNode; // gets the ul
+        great.removeChild(grand); // removes the li
+        
+    } catch (err) {
+        console.log(err)
+    }
+    
+    
 }
