@@ -79,9 +79,9 @@ function postRecording(segment) {
     scriptUL.append(scriptLI);
 
     // add the save all button and increase the count!
-    const saveBtn = document.getElementById('saveAll');
+    const saveBtn = document.getElementById('view');
     saveBtn.classList.remove('hidden');
-    saveBtn.addEventListener('click', saveAll)
+    // saveBtn.addEventListener('click', saveAll)
 
     count++;
     console.log(count, allSegments);

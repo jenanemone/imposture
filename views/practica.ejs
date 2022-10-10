@@ -2,15 +2,21 @@
 
 
 <h1 class="mx-auto text-2xl text-center">Past Practica</h1>
+<h2 class="mx-auto text-l text-center">Recently Added Speech Segments</h2>
+<main class="mx-auto p-6">
+    <ul mx-auto>
+        <% for (let [key,value] of Object.entries(speech)) { %>
+            <form action="/practica/deletePracticum/<%= key%>?_method=DELETE" method="POST" class="p-2">
+                <li class="flex items-center justify-between outline-1 outline-primary outline rounded-lg"><span class="px-3"><a href="/analysis/<%= key%>"><i class="fa-solid fa-robot text-primary"></i></a></span> <span class="w-full"><%= value %></span><span><button class="btn outline-none border-none bg-inherit text-inherit">
+                <i class="fa-solid fa-trash-can"></i>
 
-<ul>
-    <% for (let [key,value] of Object.entries(speech)) { %>
-        <li data-id="<%= key%>"> <%= value %> </li> <form action="/practica/deletePracticum/<%= key%>?_method=DELETE" method="POST">
-            <button class="btn btn-primary fa fa-trash bg-secondary" type="submit"></button>
-          </form>
-    <% } %> 
-</ul>
-
+                </button></span>
+                </li>
+            </form>
+        
+        <% } %> 
+    </ul>
+</main>
 
 
 <%- include('partials/footer') -%>
