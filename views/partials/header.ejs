@@ -10,26 +10,35 @@
       type="image/png"
       href="/assets/images/microphone.png"
     />
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=tenor-sans:400" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/push-to-talk-button.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/transcript-drawer.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@speechly/browser-ui/core/intro-popup.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
      <header>
-
-        <nav>
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo">Imposture</a>
-              <ul id="nav-mobile" class="right">
-                <li><a href="/signUp">Sign Up</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/logout">Logout</a></li>
-              </ul>
-            </div>
-          </nav>
+      <nav class="navbar bg-primary">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <label tabindex="0" class="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52">
+              <li><a href="/speech">Record Yourself</a></li>
+ 
+              <li><a href="/pastPractica">Past Practica</a></li>
+            </ul>
+          </div>
+          <a class="btn btn-ghost normal-case text-xl" href="/">Imposture</a>
+        </div>
+        <div class="navbar-end">
+          <a class="btn" href="/logout">Logout</a>
+        </div>
+      </nav>
      </header>
-

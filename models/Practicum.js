@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const PracticumSchema = new mongoose.Schema({
-    segment: {
+    data: {
         type: Object,
         required: true
     },

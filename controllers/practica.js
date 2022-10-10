@@ -18,14 +18,15 @@ module.exports = {
     },
     
     createPracticum: async (req, res) => {
+      console.log('createPracticum reached', req.body)
         try {
             await Practicum.create( {
                 // stuff goes in here
                 user: req.user.id,
-                file: req.body.file,
+                data: req.body,
             })
             console.log("practice has been stored in Mongo");
-            res.redirect('/speech');
+            res.sendStatus(200);
         } catch (err) {
             console.log(err);
         }

@@ -7,5 +7,7 @@ const practicaController = require("../controllers/practica"); // need this late
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", ensureAuth, practicaController.getPractica);
+//router.post("/createPractica:data", ensureAuth, practicaController.createPractica);
+router.post('/createPracticum', ensureAuth, practicaController.createPracticum);
 
 module.exports = router;

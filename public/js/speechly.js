@@ -20,7 +20,7 @@ function collectRecording(event) {
 }
 
 function postRecording(segment) {
-    
+
     // add the segment to the array
     const object = {
         count: count,
@@ -28,11 +28,14 @@ function postRecording(segment) {
     }
     allSegments.push(object)
 
+    // upload to Mongo
+    saveOneToMongo(segment);
+
     // populate the h2
     console.log("entered postRecording");
     const h2 = document.getElementById('output')
     h2.textContent = "Your Session Recordings";
-    h2.classList.add('text-center', 'text-xl'); 
+    h2.classList.add('text-center', 'text-xl');
 
     // populate with plain output of recordings
     // First build UL parent and add words from current segment
@@ -43,7 +46,7 @@ function postRecording(segment) {
 
     // next create a parent li to hold a p and i
     const scriptLI = document.createElement("li");
-    
+
     // a div inside li to hold everything 
     const div = document.createElement("div");
     div.style.display = "flex";
@@ -51,7 +54,7 @@ function postRecording(segment) {
     div.style.justifyContent = "space-between";
     div.style.padding = "1% 0";
     div.style['align-items'] = "center";
-    
+
     // put play and trash and p inside the div
 
     const scriptP = document.createElement("p");
@@ -68,10 +71,10 @@ function postRecording(segment) {
     scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
-    scriptTrash.setAttribute("data-count",count);
-    scriptTrash.addEventListener('click',remRec)
+    scriptTrash.setAttribute("data-count", count);
+    scriptTrash.addEventListener('click', remRec)
 
-    div.append(scriptPlayBtn,scriptP,scriptTrash);
+    div.append(scriptPlayBtn, scriptP, scriptTrash);
     scriptLI.append(div);
     scriptUL.append(scriptLI);
 
@@ -81,49 +84,49 @@ function postRecording(segment) {
     saveBtn.addEventListener('click', saveAll)
 
     count++;
-    console.log(count,allSegments);
+    console.log(count, allSegments);
 }
 
-function analyzeSegment (segment) {
+function analyzeSegment(segment) {
     const fillers = fetch("../routes/speech/getFillers")
-    .then(res => res.json())
-    .then(writeAnalysis(res))
-    .catch(error => console.log(error))
+        .then(res => res.json())
+        .then(writeAnalysis(res))
+        .catch(error => console.log(error))
 }
 
-function writeAnalysis (fillers) {
-    console.log("made it to write",fillers);
+function writeAnalysis(fillers) {
+    console.log("made it to write", fillers);
 }
 
-function generateAnalysis (words, fillers) {
+function generateAnalysis(words, fillers) {
     fetch(`../routes/speech/createAnalysis?words=${words}&fillersDetected=${fillers}`)
-    .then(res => res.json())
-    .then(console.log(res))
-    .catch(error => console.log(error))
+        .then(res => res.json())
+        .then(console.log(res))
+        .catch(error => console.log(error))
 }
 
-function lied (event) {
+function lied(event) {
     console.log(event.detail);
 }
 
 // removes recording from the temporary array
-async function remRec () {
+async function remRec() {
     try {
-        
+
         // remove the current object from the save array
         let toDel = this.dataset.count;
         console.log(toDel);
         toDel = +toDel;
         const entry = allSegments.find(obj => obj.count === toDel);
         const index = allSegments.indexOf(entry);
-        console.log(index,entry)
+        console.log(index, entry)
         if (index === 0) {
             allSegments = allSegments.slice(1);
         } else if (index === allSegments.length - 1) {
-            allSegments.slice(0,allSegments.length - 1);
+            allSegments.slice(0, allSegments.length - 1);
         }
         else {
-            let head = allSegments.slice(0,index);
+            let head = allSegments.slice(0, index);
             let tail = allSegments.slice(index + 1);
             allSegments = head.concat(tail);
         }
@@ -133,29 +136,25 @@ async function remRec () {
         const grand = parent.parentNode // gets the li
         const great = grand.parentNode; // gets the ul
         great.removeChild(grand); // removes the li
-        
+
     } catch (err) {
         console.log(err)
-    } 
+    }
 }
 
-function saveBatch(allSegments) {
-    // send the stuff from the array to the controller
-    // .then => redirect
-    const data = allSegments;
-
-fetch('https://example.com/profile', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+function saveOneToMongo(segment) {
+    console.log(`segment`,JSON.stringify(segment))
+    fetch('/practica/createPracticum', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(segment),
+    })
+        .then((response) => {
+            console.log('Success:', response);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
