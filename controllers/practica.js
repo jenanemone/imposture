@@ -1,7 +1,3 @@
-// Create Practicum
-
-// Insert into Mongo
-
 // Reroute to analysis
 const Practicum = require('../models/Practicum');
 //const script = require('../models/Script');
@@ -11,7 +7,20 @@ module.exports = {
     getPractica: async (req, res) => {
         try {
             const practica = await Practicum.find({ user: req.user.id }).lean();
-            res.render("practica.ejs", { practica: practica, user: req. user });
+          let speech = {}
+          for (let i = 0; i < practica.length; i++){
+            let s = practica[i].data.words,
+                id = practica[i]._id,
+                status = practica[i].status,
+                allWords = []
+              for (let j = 0; j < s.length; j++){
+                allWords.push(s[j].value)
+              }
+              allWords = allWords.join(' ')
+              speech[id] = allWords
+          }
+
+            res.render("practica.ejs", { speech: speech, user: req.user.id });
           } catch (err) {
             console.log(err);
           }
@@ -33,11 +42,10 @@ module.exports = {
     },
     deletePracticum: async (req, res) => {
         try {
-            const practicum = await Practicum.findById( { _id: req.params.id } );
-            await Practicum.remove( { _id: req.params.id } );
-            console.log('deleted practice')
-
-            res.redirect('/promptCentral');
+            const practicum = await Practicum.findById( { _id: req.params.key } );
+            console.log(practicum, "This is the practicum console log")
+            await Practicum.remove( { _id: req.params.key } );
+            res.redirect('/practica');
         } catch (err) {
             console.log('no deletay for you')
         }

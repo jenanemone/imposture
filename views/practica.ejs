@@ -1,1 +1,16 @@
-<h1>Past Practica</h1>
+<%- include('partials/recordHeader') -%> 
+
+
+<h1 class="mx-auto text-2xl text-center">Past Practica</h1>
+
+<ul>
+    <% for (let [key,value] of Object.entries(speech)) { %>
+        <li data-id="<%= key%>"> <%= value %> </li> <form action="/practica/deletePracticum/<%= key%>?_method=DELETE" method="POST">
+            <button class="btn btn-primary fa fa-trash bg-secondary" type="submit"></button>
+          </form>
+    <% } %> 
+</ul>
+
+
+
+<%- include('partials/footer') -%>
