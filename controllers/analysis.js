@@ -30,12 +30,42 @@ module.exports = {
     createAnalysis: async (req, res) => {
       console.log('createAnalysis reached', req.body)
       fillers = [
-        "like",
-        "um",
-        "uh",
-        "maybe",
-        "sorry",
-        "think"
+        "LIKE",
+        "UM",
+        "UH",
+        "MAYBE",
+        "SORRY",
+        "ASSUMING",
+        "KINDA",
+        "SORTA",
+        "SHOULD",
+        "GUESS",
+        "ALRIGHT",
+        "COULD",
+        "WELL",
+        "HMM",
+        "ER",
+        "ACTUALLY",
+        "SERIOUSLY",
+        "BASICALLY",
+        "THINK",
+        "SEEM",
+        "SEE",
+        "KNOW",
+        "MEAN",
+        "TOTALLY",
+        "SOMETHING",
+        "MEAN",
+        "RIGHT",
+        "OKAY",
+        "ABSOLUTELY",
+        "SURE",
+        "ALMOST",
+        "NEARLY",
+        "BELIEVE",
+        "JUST",
+        "VERY",
+        "GET"
       ]
         try {
             const practice = await practica.findById( { _id: req.body.key }).lean();
