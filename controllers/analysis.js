@@ -29,44 +29,9 @@ module.exports = {
     
     createAnalysis: async (req, res) => {
       console.log('createAnalysis reached', req.body)
-      fillers = [
-        "LIKE",
-        "UM",
-        "UH",
-        "MAYBE",
-        "SORRY",
-        "ASSUMING",
-        "KINDA",
-        "SORTA",
-        "SHOULD",
-        "GUESS",
-        "ALRIGHT",
-        "COULD",
-        "WELL",
-        "HMM",
-        "ER",
-        "ACTUALLY",
-        "SERIOUSLY",
-        "BASICALLY",
-        "THINK",
-        "SEEM",
-        "SEE",
-        "KNOW",
-        "MEAN",
-        "TOTALLY",
-        "SOMETHING",
-        "MEAN",
-        "RIGHT",
-        "OKAY",
-        "ABSOLUTELY",
-        "SURE",
-        "ALMOST",
-        "NEARLY",
-        "BELIEVE",
-        "JUST",
-        "VERY",
-        "GET"
-      ]
+      
+      fillers = ['ABSOLUTELY', 'ACTUAL', 'ACTUALLY', 'ALMOST', 'ALRIGHT', 'AMAZING', 'ANYHOW', 'ANYWAY', 'APPARENTLY', 'APPROXIMATELY', 'ASSUMING', 'BASICALLY', 'BELIEVE', 'CERTAINLY', 'CLEARLY', 'COULD', 'DEARLY', 'EASILY', 'EFFECTIVELY', 'ENTIRELY', 'ER', 'ESPECIALLY', 'ESSENTIALLY', 'EXACTLY', 'EXTREMELY', 'FACTUALLY', 'FAIRLY', 'FRANKLY', 'FULLY', 'GET', 'GUESS', 'HARDLY', 'HIGHLY', 'HMM', 'HOPE', 'HOPEFULLY', 'JUST', 'KINDA', 'KNOW', 'LIKE', 'MAINLY', 'MAYBE', 'MEAN', 'MEAN', 'MIGHT', 'MOSTLY', 'NEARLY', 'OBVIOUSLY', 'OKAY', 'PARTICULARLY', 'POSSIBLY', 'PRIMARILY', 'PROBABLE', 'PROBABLY', 'QUITE', 'REAL', 'REALLY', 'RELATIVELY', 'RIGHT', 'SEE', 'SEEM', 'SERIOUSLY', 'SHOULD', 'SIMPLY', 'SLIGHTLY', 'SO', "SOME", 'SOMETHING', 'SOMEWHAT', 'SORRY', 'SORTA', 'STUFF', 'SURE', 'SURELY', 'THINGS', 'THINK', 'TOTALLY', 'TRY', 'UH', 'UM', 'VERY', 'VIRTUALLY', 'WELL', 'WHATEVER', 'WHENEVER', 'WHOEVER', 'WIDELY']
+
         try {
             const practice = await practica.findById( { _id: req.body.key }).lean();
             console.log(practice)
