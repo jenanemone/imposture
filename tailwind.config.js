@@ -13,7 +13,11 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ['Tenor Sans', "sans-serif"]
+      tenor: ['Tenor Sans',"sans-serif"],
+      actor: ['Actor', "sans-serif"],
+      anaheim: ["Anaheim", "sans-serif"],
+      fjalla: ["Fjalla One", "sans-serif"],
+      shoulders: ["Big Shoulders Inline Text", "sans-serif"]
     }
   },
   plugins: [require("daisyui")],

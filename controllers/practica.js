@@ -13,6 +13,7 @@ module.exports = {
                 id = practica[i]._id,
                 status = practica[i].status,
                 allWords = []
+                //speech.status = status;
               for (let j = 0; j < s.length; j++){
                 allWords.push(s[j].value)
               }

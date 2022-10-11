@@ -10,7 +10,6 @@ const PracticumSchema = new mongoose.Schema({
     status: {
         type: String,
         default: 'raw',
-        enum: ['raw', 'analyzed']
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,7 +1,7 @@
 let segment; // contents of speech output 
 let count = 1; // count of output segments
 let allSegments = []; // initialize a segment container 
-let delCount = []; // which elements will we delete
+
 
 // event listeners
 document
@@ -68,6 +68,7 @@ function postRecording(segment) {
     }
     const scriptPlayBtn = document.createElement('i');
     scriptPlayBtn.classList.add("fa-solid", "fa-robot");
+    scriptPlayBtn.addEventListener('click',analyzeSegment);
     scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
@@ -78,20 +79,31 @@ function postRecording(segment) {
     scriptLI.append(div);
     scriptUL.append(scriptLI);
 
-    // add the save all button and increase the count!
+    // be able to view the practica button
     const saveBtn = document.getElementById('view');
     saveBtn.classList.remove('hidden');
     // saveBtn.addEventListener('click', saveAll)
 
+    // increase the count
     count++;
     console.log(count, allSegments);
 }
 
 function analyzeSegment(segment) {
-    const fillers = fetch("../routes/speech/getFillers")
-        .then(res => res.json())
-        .then(writeAnalysis(res))
-        .catch(error => console.log(error))
+    console.log(`segment`,JSON.stringify(segment))
+    fetch('/analysis/createAnalysis', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(segment),
+    })
+        .then((response) => {
+            console.log('Success:', response);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function writeAnalysis(fillers) {

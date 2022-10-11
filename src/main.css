@@ -1,6 +1,9 @@
+
+@import url(https://fonts.bunny.net/css?family=actor:400|anaheim:400|big-shoulders-inline-text:400|fjalla-one:400|tenor-sans:400);
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url(https://fonts.bunny.net/css?family=tenor-sans:400);
 
