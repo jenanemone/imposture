@@ -1,31 +1,36 @@
 // Run utils to generate everything
 
 // Create Analysis doc for Mongo
-
+const Practicum = require("../models/Practicum");
 const Analysis = require("../models/Analysis");
 
 module.exports = {
-    // getPractica: async (req, res) => {
-    //     try {
-    //         const practica = await Practicum.find({ user: req.user.id }).lean();
-    //       let speech = {}
-    //       for (let i = 0; i < practica.length; i++){
-    //         let s = practica[i].data.words,
-    //             id = practica[i]._id,
-    //             status = practica[i].status,
-    //             allWords = []
-    //           for (let j = 0; j < s.length; j++){
-    //             allWords.push(s[j].value)
-    //           }
-    //           allWords = allWords.join(' ')
-    //           speech[id] = allWords
-    //       }
+    getAnalysis: async (req, res) => {
+        try {
+            const practica = await Practicum.find({ user: req.user.id }).lean();
+          let speech = {}
+          for (let i = 0; i < practica.length; i++){
+            let s = practica[i].data.words,
+                id = practica[i]._id,
+                status = practica[i].status,
+                allWords = []
+              for (let j = 0; j < s.length; j++){
+                allWords.push(s[j].value)
+              }
+              allWords = allWords.join(' ')
+              speech[id] = allWords
+          }
 
-    //         res.render("practica.ejs", { speech: speech, user: req.user.id });
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    // },
+            res.render("analysis.ejs", { 
+                practicum: req.body.id,
+                fillersDetected: detectedFillers,
+                fillerWords: fillers,
+                words: wordsObj
+                });
+          } catch (err) {
+            console.log(err);
+          }
+    },
     
     createAnalysis: async (req, res) => {
       console.log('createAnalysis reached', req.body)
@@ -34,8 +39,11 @@ module.exports = {
 
         try {
             const practice = await practica.findById( { _id: req.body.key }).lean();
+            const practiceId = req.body.key;
+            const userId = req.params.id;
+
             console.log(practice)
-            console.log(practice.status)
+            //console.log(practice.status)
             // grab full words
             let wordsObj = practice.data.words;
             let allWords = [];
@@ -44,20 +52,21 @@ module.exports = {
                 let word = obj.value.toLowerCase();
                 allWords.push(word);
                 if (word in fillers) {
-                    detectedFillers.push(word.toUpperCase());
+                    detectedFillers.push(word);
                 }
             }
 
             const status = "analyzed";
-
-            const id = practice._id
             const analysis = await Analysis.create( {
                 // stuff goes in here
                 practicum: req.body.id,
-                data: req.body,
+                user: req.params.id,
+                fillersDetected: detectedFillers,
+                fillerWords: fillers,
+                words: wordsObj
             })
             console.log("analysis has been stored in Mongo");
-            res.sendStatus(200);
+            res.redirect("/analysis");
         } catch (err) {
             console.log(err);
         }

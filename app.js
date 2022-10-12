@@ -14,8 +14,10 @@ const multer = require('multer');
 const fs = require('fs');
 
 const mainRoutes = require('./routes/main');
-const boardRoutes = require("./routes/dashboard");const speechRoutes = require("./routes/speech");
+const boardRoutes = require("./routes/dashboard");
+const speechRoutes = require("./routes/speech");
 const practicaRoutes = require("./routes/practica");
+const analysisRoutes = require("./routes/analysis");
 
 // env config
 require('dotenv').config( { path: './config/.env' } );
@@ -31,7 +33,6 @@ app.set('view engine', 'ejs');
 
 // Static folder
 app.use( express.static( path.join( __dirname, "public" ) ) );
-app.use(express.static(path.join( __dirname,'uploads') ) );
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
@@ -71,6 +72,7 @@ app.use("/", mainRoutes);
 app.use("/dashboard", boardRoutes);
 app.use("/speech", speechRoutes);
 app.use("/practica", practicaRoutes);
+//app.use("/analysis", analysisRoutes);
 
 const PORT = process.env.PORT || 5000;
 

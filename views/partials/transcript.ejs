@@ -1,0 +1,13 @@
+<section class="mx-auto outline outline-primary outline-1">
+    <p>
+        <% for(let word of words) {%>
+
+            <% if (word in fillersWords) {%>
+                <span class="text-primary">word</span>
+            <% } %>
+            <% else {%>
+                <span class="text-secondary">word</span>
+            <% }%>
+        <% } %>
+    </p>
+</section>

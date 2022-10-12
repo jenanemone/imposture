@@ -1,27 +1,19 @@
 const mongoose = require('mongoose');
 
 const AnalysisSchema = new mongoose.Schema({
-    user: {
+    practicum: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "Practicum"
     },
-    // relevantFillers: {
-    //     listFillerWords: ["like", 
-    //     "maybe", 
-    //     "think", 
-    //     "might",
-    //     "um",
-    //     "uh",
-    //     "could", 
-    //     "well"]
-    // },
-    // words: {
-    //     words: words},
-    // fillersDected: {fillers: fillers},
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now,
-    // },
+    fillersDetected: {
+        type: Array
+    },
+    fillerWords: {
+        type: Array
+    },
+    words: {
+        type: Object
+    }
 });
 
 module.exports = mongoose.model('Analysis', AnalysisSchema, 'analyses');
