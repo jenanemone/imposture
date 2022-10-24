@@ -1,4 +1,3 @@
-const Analysis = require("../models/Analysis");
 
 
 module.exports = {

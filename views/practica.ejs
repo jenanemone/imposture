@@ -8,12 +8,8 @@
         <% for (let [key,value] of Object.entries(speech)) { %>
             <form action="/practica/deletePracticum/<%= key%>?_method=DELETE" method="POST" class="p-2">
                 <li class="flex items-center justify-between outline-1 outline-primary outline rounded-lg"><span class="px-3">
-                    <a href="/analysis/<%= key%>"><i class="fa-solid fa-robot text-primary"></i></a> 
-                    <%# if (speech[status] === "analyzed") {%>
-                        <!-- <a href="/analysis/<%#= key%>"><i class="fa-solid fa-robot text-primary"></i></a> -->
-                    <%# } else {%> 
-                        <!-- <a href="/analysis/<%#= key%>"><i class="fa-solid fa-regular fa-note-sticky text-primary"></i></a>  -->
-                    <%# }%>
+                    <a href="<%= key%>"><i class="fa-solid fa-robot text-primary"></i></a> 
+    
                     </span> <span class="w-full font-fjalla text-l py-1"><%= value %></span><span><button class="btn outline-none border-none bg-inherit text-inherit">
                 <i class="fa-solid fa-trash-can"></i>
 

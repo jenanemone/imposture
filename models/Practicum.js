@@ -15,11 +15,6 @@ const PracticumSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    analysis: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Analysis',
-        required: false
-    },
     createdAt: {
         type: Date,
         default: Date.now

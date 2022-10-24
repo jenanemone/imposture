@@ -2,8 +2,6 @@
 
 // Reroute to speech
 
-// Reroute to analysis
-
 
 const Practicum = require('../models/Practicum');
 const practica = require('./practica');

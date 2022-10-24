@@ -1,7 +1,5 @@
-// Reroute to analysis
+
 const Practicum = require('../models/Practicum');
-//const script = require('../models/Script');
-//const Analysis = require('../models/Analysis');
 
 module.exports = {
     getPractica: async (req, res) => {
@@ -60,7 +58,7 @@ module.exports = {
             }
           );
           console.log(`title added: ${req.body.fileTitle}`);
-          res.redirect(`/analysis`);
+          res.redirect(`/practica`);
         } catch (err) {
           console.log(err);
         }

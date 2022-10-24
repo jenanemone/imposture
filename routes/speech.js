@@ -10,12 +10,9 @@
 const express = require("express");
 const router = express.Router();
 const speechController = require("../controllers/speech");
-const practicaController = require("../controllers/practica");
-const analysisController = require("../controllers/analysis"); // need this later for straight to dvd version
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", ensureAuth, speechController.getSpeech);
 
-// router.post("/createPractica", ensureAuth, practicaController.createPractica)
 
 module.exports = router;

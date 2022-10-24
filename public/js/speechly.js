@@ -89,33 +89,6 @@ function postRecording(segment) {
     console.log(count, allSegments);
 }
 
-function analyzeSegment(segment) {
-    console.log(`segment`,JSON.stringify(segment))
-    fetch('/analysis/createAnalysis', {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(segment),
-    })
-        .then((response) => {
-            console.log('Success:', response);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
-
-function writeAnalysis(fillers) {
-    console.log("made it to write", fillers);
-}
-
-function generateAnalysis(words, fillers) {
-    fetch(`../routes/speech/createAnalysis?words=${words}&fillersDetected=${fillers}`)
-        .then(res => res.json())
-        .then(console.log(res))
-        .catch(error => console.log(error))
-}
 
 function lied(event) {
     console.log(event.detail);
