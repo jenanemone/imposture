@@ -6,6 +6,6 @@ const analysisController = require("../controllers/analysis");
 
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/:id", ensureAuth, analysisController.getAnalysis);
+router.get("/:key", ensureAuth, analysisController.getAnalysis);
 
-router.post("/createAnalysis:id", ensureAuth, analysisController.createAnalysis);
+router.post("/createAnalysis:key", ensureAuth, analysisController.createAnalysis);

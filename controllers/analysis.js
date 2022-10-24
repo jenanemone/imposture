@@ -7,7 +7,7 @@ const Analysis = require("../models/Analysis");
 module.exports = {
     getAnalysis: async (req, res) => {
         try {
-            const practica = await Practicum.find({ user: req.user.id }).lean();
+            const practica = await Practicum.find({ user: req.user.key }).lean();
           let speech = {}
           for (let i = 0; i < practica.length; i++){
             let s = practica[i].data.words,
@@ -35,7 +35,7 @@ module.exports = {
     createAnalysis: async (req, res) => {
       console.log('createAnalysis reached', req.body)
       
-      fillers = ['ABSOLUTELY', 'ACTUAL', 'ACTUALLY', 'ALMOST', 'ALRIGHT', 'AMAZING', 'ANYHOW', 'ANYWAY', 'APPARENTLY', 'APPROXIMATELY', 'ASSUMING', 'BASICALLY', 'BELIEVE', 'CERTAINLY', 'CLEARLY', 'COULD', 'DEARLY', 'EASILY', 'EFFECTIVELY', 'ENTIRELY', 'ER', 'ESPECIALLY', 'ESSENTIALLY', 'EXACTLY', 'EXTREMELY', 'FACTUALLY', 'FAIRLY', 'FRANKLY', 'FULLY', 'GET', 'GUESS', 'HARDLY', 'HIGHLY', 'HMM', 'HOPE', 'HOPEFULLY', 'JUST', 'KINDA', 'KNOW', 'LIKE', 'MAINLY', 'MAYBE', 'MEAN', 'MEAN', 'MIGHT', 'MOSTLY', 'NEARLY', 'OBVIOUSLY', 'OKAY', 'PARTICULARLY', 'POSSIBLY', 'PRIMARILY', 'PROBABLE', 'PROBABLY', 'QUITE', 'REAL', 'REALLY', 'RELATIVELY', 'RIGHT', 'SEE', 'SEEM', 'SERIOUSLY', 'SHOULD', 'SIMPLY', 'SLIGHTLY', 'SO', "SOME", 'SOMETHING', 'SOMEWHAT', 'SORRY', 'SORTA', 'STUFF', 'SURE', 'SURELY', 'THINGS', 'THINK', 'TOTALLY', 'TRY', 'UH', 'UM', 'VERY', 'VIRTUALLY', 'WELL', 'WHATEVER', 'WHENEVER', 'WHOEVER', 'WIDELY']
+      fillers = ['ABSOLUTELY', 'ACTUAL', 'ACTUALLY', 'ALMOST', 'ALRIGHT', 'AMAZING', 'ANYHOW', 'ANYWAY', 'APPARENTLY', 'APPROXIMATELY', 'ASSUMING', 'BASICALLY', 'BELIEVE', 'CERTAINLY', 'CLEARLY', 'COULD', 'DEARLY', 'EASILY', 'EFFECTIVELY', 'ENTIRELY', 'ER', 'ESPECIALLY', 'ESSENTIALLY', 'EXACTLY', 'EXTREMELY', 'FACTUALLY', 'FAIRLY', 'FRANKLY', 'FULLY', 'GET', 'GENERALLY', 'GUESS', 'HARDLY', 'HIGHLY', 'HMM', 'HOPE', 'HOPEFULLY', 'JUST', 'KINDA', 'KNOW', 'LIKE', 'MAINLY', 'MAYBE', 'MEAN', 'MEAN', 'MIGHT', 'MOSTLY', 'NEARLY', 'OBVIOUSLY', 'OKAY', 'PARTICULARLY', 'POSSIBLY', 'PRIMARILY', 'PROBABLE', 'PROBABLY', 'QUITE', 'REAL', 'REALLY', 'RELATIVELY', 'RIGHT', 'SEE', 'SEEM', 'SERIOUSLY', 'SHOULD', 'SIMPLY', 'SLIGHTLY', 'SO', "SOME", 'SOMETHING', 'SOMEWHAT', 'SORRY', 'SORTA', 'STUFF', 'SURE', 'SURELY', 'THINGS', 'THINK', 'TOTALLY', 'TRY', 'UH', 'UM', 'VERY', 'VIRTUALLY', 'WELL', 'WHATEVER', 'WHENEVER', 'WHOEVER', 'WIDELY']
 
         try {
             const practice = await practica.findById( { _id: req.body.key }).lean();
@@ -60,7 +60,6 @@ module.exports = {
             const analysis = await Analysis.create( {
                 // stuff goes in here
                 practicum: req.body.id,
-                user: req.params.id,
                 fillersDetected: detectedFillers,
                 fillerWords: fillers,
                 words: wordsObj
