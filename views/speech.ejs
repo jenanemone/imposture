@@ -1,8 +1,8 @@
 <%- include('partials/header') -%>
 
   <main class="pt-5"> 
-    <h1 class="mx-auto text-2xl text-center font-tenor">Record Your Voice</h1>
-    <div class="container flex justify-center mt-16">
+    <h1 class="mx-auto text-2xl text-center font-tenor mb-10">Record Your Voice</h1>
+    <div class="mx-0 w-full flex justify-center">
       
 
       <push-to-talk-button appid="39285e2b-b8dc-4de7-b989-81e5dff11685" id="pttButton" class="my-4" gradientstop1="#FF5D73" gradientstop2="7C7A7A"
@@ -24,10 +24,11 @@
     <section class="transcripts" id="transcripts">
       <h2 id="output" class="text-center"></h2>
       <ul id="recording-transcripts">
+
       </ul>
     </section>
     <a href="/practica"><button type='button'
-      class='hidden flex break-inside bg-primary rounded-3xl px-8 py-4 mb-4 mx-auto dark:bg-slate-800 dark:text-white' id="view">
+      class='flex break-inside bg-primary rounded-3xl px-8 py-4 my-8 mx-auto dark:bg-slate-800 dark:text-white' id="view">
       <div class='flex items-center justify-between flex-1'>
         <span class='text-sm font-medium text-white pr-2'>View All</span>
         <svg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -37,5 +38,5 @@
         </svg>
       </div>
     </button></a>
-    <script src="/js/speechly.js"></script>
+    <script src="../js/speechly.js"></script>
   </main>

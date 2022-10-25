@@ -21,6 +21,7 @@ function collectRecording(event) {
 
 function postRecording(segment) {
 
+    console.log('postRecording reached...')
     // add the segment to the array
     const object = {
         count: count,
@@ -40,6 +41,7 @@ function postRecording(segment) {
     // populate with plain output of recordings
     // First build UL parent and add words from current segment
     const scriptUL = document.getElementById("recording-transcripts");
+    scriptUL.classList.remove('hidden');
     scriptUL.style.padding = "5% 20%";
     let scriptContent = "";
     segment.words.forEach(word => scriptContent += " " + word.value);
