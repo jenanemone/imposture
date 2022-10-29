@@ -33,7 +33,6 @@ function postRecording(segment) {
     saveOneToMongo(segment);
 
     // populate the h2
-    console.log("entered postRecording");
     const h2 = document.getElementById('output')
     h2.textContent = "Your Session Recordings";
     h2.classList.add('text-center', 'text-xl');
@@ -42,7 +41,7 @@ function postRecording(segment) {
     // First build UL parent and add words from current segment
     const scriptUL = document.getElementById("recording-transcripts");
     scriptUL.classList.remove('hidden');
-    scriptUL.style.padding = "5% 20%";
+    //scriptUL.style.padding = "5% 20%";
     let scriptContent = "";
     segment.words.forEach(word => scriptContent += " " + word.value);
 
@@ -51,26 +50,26 @@ function postRecording(segment) {
 
     // a div inside li to hold everything 
     const div = document.createElement("div");
-    div.style.display = "flex";
-    div.style.flexDirection = "row";
-    div.style.justifyContent = "space-between";
-    div.style.padding = "1% 0";
-    div.style['align-items'] = "center";
+    //div.style.display = "flex";
+    //div.style.flexDirection = "row";
+    //div.style.justifyContent = "space-between";
+    //div.style.padding = "1% 0";
+    //div.style['align-items'] = "center";
 
     // put play and trash and p inside the div
 
     const scriptP = document.createElement("p");
     scriptP.textContent = `${count}: ${scriptContent}`;
-    scriptP.style.width = "80%";
-    scriptP.style.padding = "1rem";
-    scriptP.style.border = ".025rem solid #FF5D73";
-    scriptP.style["border-radius"] = ".5rem";
+    //scriptP.style.width = "80%";
+    //scriptP.style.padding = "1rem";
+    //scriptP.style.border = ".025rem solid #FF5D73";
+    //scriptP.style["border-radius"] = ".5rem";
     if (!(count % 2)) {
         scriptP.classList.add("bg-base-100");
     }
     const scriptPlayBtn = document.createElement('i');
     scriptPlayBtn.classList.add("fa-solid", "fa-robot");
-    scriptPlayBtn.addEventListener('click',analyzeSegment);
+    //scriptPlayBtn.addEventListener('click',analyzeSegment);
     scriptPlayBtn.style.color = "#FF5D73";
     const scriptTrash = document.createElement("i");
     scriptTrash.classList.add("fa-solid", "fa-trash-can");
@@ -84,6 +83,7 @@ function postRecording(segment) {
     // be able to view the practica button
     const saveBtn = document.getElementById('view');
     saveBtn.classList.remove('hidden');
+    console.log("save button...")
     // saveBtn.addEventListener('click', saveAll)
 
     // increase the count
@@ -97,6 +97,7 @@ function lied(event) {
 }
 
 // removes recording from the temporary array
+// doesn't remove from Mongo currently
 async function remRec() {
     try {
 
@@ -129,7 +130,7 @@ async function remRec() {
     }
 }
 
-function saveOneToMongo(segment) {
+async function saveOneToMongo(segment) {
     console.log(`segment`,JSON.stringify(segment))
     fetch('/practica/createPracticum', {
         method: 'POST', 

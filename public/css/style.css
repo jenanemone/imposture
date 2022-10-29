@@ -2769,11 +2769,6 @@ html{
   margin-right: 0px;
 }
 
-.my-10{
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
 .mb-24{
   margin-bottom: 6rem;
 }
@@ -2794,32 +2789,12 @@ html{
   margin-bottom: 5rem;
 }
 
-.mt-16{
-  margin-top: 4rem;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
-}
-
-.mb-16{
-  margin-bottom: 4rem;
-}
-
-.mr-0{
-  margin-right: 0px;
-}
-
 .mb-10{
   margin-bottom: 2.5rem;
 }
 
 .flex{
   display: flex;
-}
-
-.hidden{
-  display: none;
 }
 
 .h-5\/6{

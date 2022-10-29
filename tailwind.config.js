@@ -1,5 +1,3 @@
-const { validateServiceConfig } = require('@grpc/grpc-js/build/src/service-config');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./views/**/*.{html,js,ejs}"],
