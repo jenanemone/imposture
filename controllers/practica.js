@@ -30,7 +30,7 @@ module.exports = {
     createPracticum: async (req, res) => {
       console.log('createPracticum reached', req.body)
         try {
-            await Practicum.create( {
+            const practicum = await Practicum.create( {
                 // stuff goes in here
                 user: req.user.id,
                 data: req.body,
